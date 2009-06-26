@@ -64,7 +64,7 @@ Set dictObj = oJson.dictionary
 					if lCase(typeName(dictObj(k))) = "dictionary" then
 				        if not IsNumeric(tp) and isInner then
 				            tp = k
-        					Eval("Set t" & "." & tp & "=" & dictObj(k))
+'        					Eval("Set t" & "." & tp & "=" & dictObj(k))
 				        end if
 				        
                         'isInner = false
