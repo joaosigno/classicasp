@@ -1,0 +1,1 @@
+﻿<%If trim(Session("user")) = "" Then Response.Redirect("./") End If%>
