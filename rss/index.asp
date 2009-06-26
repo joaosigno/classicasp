@@ -24,7 +24,7 @@
     };
 
     window.onload = function() {
-        //alert(teste.fields[0].one);
+        alert(teste.fields[0].one);
     }
 
 </script>
