@@ -242,10 +242,10 @@ end function
 
 
 '******************************************************************************************
-'* Prevent SQL Inject Attack
+'* Prevent SQL Inject Atack
 '******************************************************************************************
 Public Function scanSQL(str)
-    lixo = Array("select " ,"drop " ,";" ,"–","--" ,"insert " ,"delete " ,"xp_", "'")
+    lixo = Array("select" ,"drop" ,";" ,"–","--" ,"insert" ,"delete" ,"xp_", "'")
     for i = lBound(lixo) to uBound(lixo)
        str = replace(str, lixo(i), "")
     next
@@ -292,7 +292,7 @@ Public Function writeMethodsToJsonA(aType, path)
             tmpMethod = tmpMethod & "method,"
             for n = 0 to Ubound(arrParams)
                 tmpMethod = tmpMethod & arrParams(n)
-                tmpParam = tmpParam & "_param= ""' + "& arrParams(n) &" + '"" "
+                tmpParam = tmpParam & "_param=""' + "& arrParams(n) &" + '"""
                 If(n < Ubound(arrParams)) Then
                     tmpMethod = tmpMethod & ","
                     tmpParam = tmpParam & "&"
@@ -346,6 +346,7 @@ If request.querystring("m") <> "" Then
 
     aType_ = request.querystring("o")
     functionName = request.querystring("m")
+
     params_ = scanSQL(request.form("_param"))
     
     Public Function writeMethodsToJsonB(aType,params)

@@ -477,8 +477,6 @@ objectAjax.Ajax.prototype = Object({
          this.url += "mathrandomvar="+Math.random();
          this.xmlHttp.open("post",this.url,true);
          this.xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-         this.xmlHttp.setRequestHeader("Content-length", params.length);
-         this.xmlHttp.setRequestHeader("Connection", "close");
          this.xmlHttp.send(params.replace(/ /g,'%20'));
       },
    updateFunc:
@@ -506,7 +504,7 @@ objectAjax.Ajax.prototype = Object({
               }catch (oError){}
             }
           }
-         alert("Objeto XMLHttp no pode ser criado.");
+         alert("Objeto XMLHttp não pode ser criado.");
       }
 });
 
@@ -541,7 +539,7 @@ xml2json={
 		return y
 	},
 	xml_to_object:function(xmlcode){
-		var x=xmlcode.replace(/<\//g,"");
+		var x=xmlcode.replace(/<\//g,"§");
 		x=x.split("<");
 		var y=[];
 		var level=0;
@@ -550,8 +548,8 @@ xml2json={
 			var tagname=x[i].split(">")[0];
 			opentags.push(tagname);
 			level++
-			y.push(level+"<"+x[i].split("ã§§")[0]);
-			while(x[i].indexOf("ï¿½"+opentags[opentags.length-1]+">")>=0){level--;opentags.pop()}
+			y.push(level+"<"+x[i].split("§")[0]);
+			while(x[i].indexOf("§"+opentags[opentags.length-1]+">")>=0){level--;opentags.pop()}
 		};
 		var oldniva=-1;
 		var objname="this.xmlobject";

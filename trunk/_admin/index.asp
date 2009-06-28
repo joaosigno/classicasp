@@ -8,7 +8,7 @@
     function getPessoas(callback) {
         //alert(callback);
         if (eval(callback)) {
-            document.location.replace('_startADM.asp', false);
+            document.location.replace('_start.asp', false);
         }
         else {
             alert('Login e Usuario não conferem');
