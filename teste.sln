@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "teste", "http://localhost/teste", "{B312CB96-50EB-40AA-878B-C5A6E589D987}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "teste", "http://localhost/teste", "{D40BF076-26C6-489B-B33C-DE77A19FB200}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "2.0"
 		Debug.AspNetCompiler.VirtualPath = "/teste"
@@ -26,10 +26,13 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B312CB96-50EB-40AA-878B-C5A6E589D987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B312CB96-50EB-40AA-878B-C5A6E589D987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D40BF076-26C6-489B-B33C-DE77A19FB200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D40BF076-26C6-489B-B33C-DE77A19FB200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 EndGlobal
