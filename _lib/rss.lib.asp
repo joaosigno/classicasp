@@ -62,9 +62,17 @@ Class RSSLib
 		Dim strItemContent
 		Dim objChild
 
+		Dim tmpaa : tmpaa = strFeedUri
+
+
+		If (InStr(tmpaa,"?alt=rss") = 0) Then 
+			tmpaa = tmpaa & "?alt=rss"
+		End If
+
+
 		' Create XML object and open RSS feed
 		Set objXml = Server.CreateObject("MSXML2.XMLHTTP.3.0")
-		objXml.Open "GET", strFeedUri, false
+		objXml.Open "GET",  tmpaa, false
 		objXml.Send()
 		strXml = objXml.ResponseText
 		' Clean-up

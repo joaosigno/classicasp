@@ -1,5 +1,4 @@
-﻿<!-- #include file="./../../_classes/noticias.class.asp" -->
-<!-- #include file="./../../_classes/youtube_rss.class.asp" -->
+﻿<!-- #include file="./../../_classes/youtube_rss.class.asp" -->
 <%
 Class Start
     Public Function listaNoticias(page)
@@ -11,7 +10,7 @@ Class Start
 
 
     Public Function createRSS(idrss,titulo,textoCurto,mediaTipo,url)
-        Set r = new Rss
+        Set r = new RSSYoutube
 		If idrss = "0" Then
 			res = r.toInsertRss(titulo,textoCurto,mediaTipo,url)
 		Else
@@ -23,7 +22,7 @@ Class Start
 
     Public Function readRSS(id, page)
         recordsPerPage = "5"
-        Set n = new Rss
+        Set n = new RSSYoutube
 		If id = "0" Then
 			res = n.getRss(page,recordsPerPage)
 		Else
@@ -33,12 +32,12 @@ Class Start
     End Function
 
 	Public Function setPrincipal(id)
-        Set r = new Rss
+        Set r = new RSSYoutube
 		setPrincipal = r.setPrincipal(id)
 	End Function
 
     Public Function deleteRSS(id)
-        Set r = new Rss
+        Set r = new RSSYoutube
         deleteRSS = r.toDeleteRss(id)
     End Function
 
