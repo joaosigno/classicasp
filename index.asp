@@ -27,7 +27,7 @@
 	}
 
 	window.onload = function(){
-		new _Index.listaRssBlogger('retorna',50);
+		new _Index.listaRssBlogger(retorna,50);
 	}
 
 </script>
@@ -39,8 +39,6 @@
 <body>
 
 
-
-http://gdata.youtube.com/feeds/base/users/Irategamer/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile
 
 
 
