@@ -1,41 +1,24 @@
-﻿<!-- #include file="./../_classes/noticias.class.asp" -->
-<!-- #include file="./../_classes/pessoa.class.asp" -->
-<!-- #include file="./../_lib/rss.lib.asp" -->
-<!-- #include file="./../_lib/xml2json.lib.asp" -->
+﻿<!-- #include file="./../_classes/blogger_rss.class.asp" -->
 <%
 Class Index
-    Public Function listaNoticias(page)
-        recordsPerPage = "3"
-        Set n = new Noticias
-        listaNoticias = n.getNoticias(page,recordsPerPage)
-    End Function
-
-    Public Function listaPessoas()
-        Set p = new Pessoa
-        listaPessoas = p.getPessoa()
-    End Function
-
     Public Function listaRssImages(maxNews)
-        Set r = new RSS
+        Set r = new RssFlickr
         Dim tmp2
         tmp2 = r.rssFromFlickr("http://api.flickr.com/services/feeds/photos_public.gne?id=77449999@N00&lang=pt-br&format=rss_200", Clng(maxNews))
         listaRssImages = tmp2
     End Function
 
     Public Function listaRssVideos(maxNews)
-        Set r = new RSS
+        Set r = new RSSYoutube
         Dim tmp2
-        'tmp2 = r.rssFromYouTube("http://gdata.youtube.com/feeds/base/users/Irategamer/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile", cLng(maxNews))
-        tmp2 = r.rssFromYouTube("http://gdata.youtube.com/feeds/base/users/dvddatv/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile", cLng(maxNews))
+        tmp2 = r.rssFromYouTube(theUser, cLng(maxNews))
         listaRssVideos = tmp2
     End Function
 
-
     Public Function listaRssBlogger(maxNews)
-        Set r = new RSS
+        Set r = new RssBlogger
         Dim tmp2
-        tmp2 = r.rssFromBlogger("http://yes-downloads.blogspot.com/feeds/posts/default?alt=rss", cLng(maxNews))
-        'tmp2 = r.rssFromBlogger("http://feeds.feedburner.com/IssoMesmo", cLng(maxNews))
+        tmp2 = r.getPrincipalRss(maxNews)
         listaRssBlogger = tmp2
     End Function
 
@@ -47,8 +30,6 @@ Class Index
             .Add "function listaRssImages", "maxNews"
             .Add "function listaRssVideos", "maxNews"
             .Add "function listaRssBlogger", "maxNews"
-            .Add "function listaNoticias", "page"
-            .Add "function listaPessoas", ""
         End With
     End Function
 End Class

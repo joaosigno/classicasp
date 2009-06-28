@@ -11,7 +11,7 @@ Class Start
 
 
     Public Function createRSS(idrss,titulo,textoCurto,mediaTipo,url)
-        Set r = new Rss
+        Set r = new RssBlogger
 		If idrss = "0" Then
 			res = r.toInsertRss(titulo,textoCurto,mediaTipo,url)
 		Else
@@ -23,7 +23,7 @@ Class Start
 
     Public Function readRSS(id, page)
         recordsPerPage = "5"
-        Set n = new Rss
+        Set n = new RssBlogger
 		If id = "0" Then
 			res = n.getRss(page,recordsPerPage)
 		Else
@@ -34,13 +34,13 @@ Class Start
 
 
 	Public Function setPrincipal(id)
-        Set r = new Rss
+        Set r = new RssBlogger
 		setPrincipal = r.setPrincipal(id)
 	End Function
 
 
     Public Function deleteRSS(id)
-        Set r = new Rss
+        Set r = new RssBlogger
         deleteRSS = r.toDeleteRss (id)
     End Function
 

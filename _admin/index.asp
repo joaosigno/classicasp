@@ -24,7 +24,7 @@
 <input type="text" id="l" value=""/><br />
 <input type="text" id="p" value=""/><br />
 
-<input type="button" value="get" onclick="new _IndexADM.executeLogin(getPessoas,$_('l').value,$_('p').value)" />
+<input type="button" value="Entrar" onclick="new _IndexADM.executeLogin(getPessoas,$_('l').value,$_('p').value)" />
 
 
 </body>
