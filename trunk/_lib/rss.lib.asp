@@ -1,5 +1,6 @@
 ﻿<%
 Class RSSLib
+'Tests if RSS address exists or is authorized to connect
 	Public Function rssTest(strFeedUri)
 	    On Error resume next
         output = ""
@@ -41,8 +42,9 @@ Class RSSLib
 	End Function
 
 
+'Get RSS from Blogger
 	Public Function rssFromBlogger(strFeedUri, intMax)
-        output = ""
+        Dim output : output = ""
 		' ------- Configuration variables
 			' strContactEmail. Webmaster contact email
 			' strErrMsg. Error message that will be displayed if no items exist in the RSS feed
@@ -96,7 +98,6 @@ Class RSSLib
 			output = output & (strTplHeader)
 			j = -1
 			
-			
 			For i = 0 To intRssItems
 			    strRssDesc = ""
 
@@ -143,8 +144,9 @@ Class RSSLib
 	End Function
 
 
+'Get RSS from Flickr
 	Public Function rssFromFlickr(strFeedUri, intMax)
-        output = ""
+        Dim output : output = ""
 		' ------- Configuration variables
 			' strContactEmail. Webmaster contact email
 			' strErrMsg. Error message that will be displayed if no items exist in the RSS feed
@@ -198,8 +200,7 @@ Class RSSLib
 		If intRssItems > 0 Then
 			output = output & (strTplHeader)
 			j = -1
-			
-			
+
 			For i = 0 To intRssItems
 			    strRssDesc = ""
 
@@ -254,10 +255,11 @@ Class RSSLib
 	End Function
 
 
+'Get RSS from Youtube
+	Public Function rssFromYouTube(theUser, intMax)
+		Dim strFeedUri : strFeedUri = "http://gdata.youtube.com/feeds/base/users/"& theUser &"/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile"
 
-	Public Function rssFromYouTube(strFeedUri, intMax)
-
-        output = ""
+        Dim output : output = ""
 		' ------- Configuration variables
 			' strContactEmail. Webmaster contact email
 			' strErrMsg. Error message that will be displayed if no items exist in the RSS feed
@@ -313,7 +315,6 @@ Class RSSLib
 		If intRssItems > 0 Then
 
 			output = output & (strTplHeader)
-
 			j = -1
 
 			For i = 0 To intRssItems
@@ -330,7 +331,6 @@ Class RSSLib
 				Next
  
 				j = j + 1
-
 
                 tmpOut = ""
 				If j < Clng(intMax) Then
@@ -464,8 +464,14 @@ Class RSSLib
 
 End Class
 
-'//Flickr
-'//http://api.flickr.com/services/feeds/photos_friends.gne?user_id=38549912@N07&friends=0&display_all=1&lang=pt-br&format=rss_200
 
-'http://www.youtube.com/rss/user/irategamer/videos.rss
+
+'//Flickr
+'http://api.flickr.com/services/feeds/photos_friends.gne?user_id=38549912@N07&friends=0&display_all=1&lang=pt-br&format=rss_200
+'http://api.flickr.com/services/feeds/photos_public.gne?id=38549912@N07&lang=pt-br&format=rss_200
+'//Youtube
+'http://gdata.youtube.com/feeds/base/"& theUser &"/Irategamer/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile
+'//Blogger
+'"http://"& theUser &".blogspot.com/feeds/posts/default?alt=rss"
+'http://kodomonotoki.blogspot.com/feeds/posts/default?alt=rss
 %>

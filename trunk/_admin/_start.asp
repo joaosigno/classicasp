@@ -19,9 +19,8 @@
 
 <body>
 
-<a href="_youtube.asp">RSS do Youtube</a> <br />
-<a href="_flickr.asp">RSS do Flickr</a> <br />
-<a href="_blogger.asp">RSS do Blogger</a>
+<!-- #include file="./_amenu.asp" -->
+
 
 
 </body>

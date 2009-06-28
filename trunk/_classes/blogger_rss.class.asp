@@ -1,7 +1,7 @@
 <!-- #include file="./../_lib/pagecounter.lib.asp" -->
 <!-- #include file="./../_lib/rss.lib.asp" -->
 <%
-Class Rss
+Class RssBlogger
     Public Function getRss(page,quantity)
         Set conn = Session("objConn")
         sqlCount = "select count(idRss) as tot from rss where mediaTipo='blogger' "
@@ -21,6 +21,21 @@ Class Rss
         Set rs = conn.execute(sql)
         getOneRss = "{""rss"":" & toJSON(rs) &"}"
     End Function
+
+    Public Function getPrincipalRss(maxNews)
+        Set r = new RSSLib
+        Set conn = Session("objConn")
+        sql = "select url from rss where principalBlogger = 1 "
+        Set rs = conn.execute(sql)
+
+		'Response.Write rs("url")
+		'Response.End
+
+        tmp2 = r.rssFromBlogger(rs("url"), maxNews)
+
+        getPrincipalRss = "{""rss"":" & tmp2 &"}"
+    End Function
+
 
 
     Public Function toInsertRss(titulo,textoCurto,mediaTipo,url)

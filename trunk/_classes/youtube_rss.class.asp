@@ -1,7 +1,7 @@
 <!-- #include file="./../_lib/pagecounter.lib.asp" -->
 <!-- #include file="./../_lib/rss.lib.asp" -->
 <%
-Class Rss
+Class RssYoutube
     Public Function getRss(page,quantity)
         Set conn = Session("objConn")
         sqlCount = "select count(idRss) as tot from rss where mediaTipo='youtube' "
