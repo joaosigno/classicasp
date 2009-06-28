@@ -1,5 +1,148 @@
 ﻿<%
-Class RSS
+Class RSSLib
+	Public Function rssTest(strFeedUri)
+	    On Error resume next
+        output = ""
+		Dim strErrMsg
+
+		strContactEmail = vbNullString
+		strErrMsg = "Rss não encontrado, ou contém erros"
+
+
+		Dim objXml, strXml, objDom
+		Dim arrRssItems, intRssItems, objRssItem
+
+		' Create XML object and open RSS feed
+		Set objXml = Server.CreateObject("MSXML2.XMLHTTP.3.0")
+		objXml.Open "GET", strFeedUri, false
+		objXml.Send()
+		strXml = objXml.ResponseText
+		' Clean-up
+		Set objXml = Nothing
+
+		Set objDom = Server.CreateObject("MSXML2.DomDocument.3.0")
+		objDom.async = false
+		objDom.LoadXml(strXml)
+		' Collect all "items" from downloaded RSS
+		Set arrRssItems = objDom.getElementsByTagName("item")
+		' Clean-up
+		Set objDom = Nothing
+
+		intRssItems = arrRssItems.Length - 1
+
+		If intRssItems = 0 or Err.number <> 0 Then
+			output = output &  Mid(Err.Description, 1, (Len(Err.Description) - 2) ) & ""
+			Err.Clear()
+		End If
+
+        rssTest = output
+
+        'Error.Clear
+	End Function
+
+
+	Public Function rssFromBlogger(strFeedUri, intMax)
+        output = ""
+		' ------- Configuration variables
+			' strContactEmail. Webmaster contact email
+			' strErrMsg. Error message that will be displayed if no items exist in the RSS feed
+			Dim strContactEmail, strErrMsg
+
+			strContactEmail = vbNullString
+			strErrMsg = "An error occurred while trying to process " & strFeedUri & ".<br />Please contact the " & _
+				"<a href=""mailto:" & strContactEmail & """>webmaster</a>."
+
+		' ------- Template variables:
+			' strTplHeader = HTML template header
+			' strTplFooter = HTML template footer
+			' strTplItem = HTML item template
+				' {LINK} will be replaced with item link
+				' {TITLE} will be replaced with item title
+				' {DESCRIPTION} will be replaced with item description
+			Dim strTplHeader, strTplFooter, strTplItem
+
+			strTplHeader = "["
+			strTplFooter = "]"
+ 			strTplItem = "{""link"":""{LINK}"",""title"":""{TITLE}"",""description"":""{DESCRIPTION}""}"
+
+		' ------- End variables
+
+		Dim objXml, strXml, objDom
+		Dim arrRssItems, intRssItems, objRssItem
+		Dim j, i
+		Dim strRssTitle, strRssLink, strRssDesc, strRssImage, strRssImageSmall, strRssImageThumb
+		Dim strItemContent
+		Dim objChild
+
+		' Create XML object and open RSS feed
+		Set objXml = Server.CreateObject("MSXML2.XMLHTTP.3.0")
+		objXml.Open "GET", strFeedUri, false
+		objXml.Send()
+		strXml = objXml.ResponseText
+		' Clean-up
+		Set objXml = Nothing
+
+		Set objDom = Server.CreateObject("MSXML2.DomDocument.3.0")
+		objDom.async = false
+		objDom.LoadXml(strXml)
+		' Collect all "items" from downloaded RSS
+		Set arrRssItems = objDom.getElementsByTagName("item")
+		' Clean-up
+		Set objDom = Nothing
+
+		intRssItems = arrRssItems.Length - 1
+
+		If intRssItems > 0 Then
+			output = output & (strTplHeader)
+			j = -1
+			
+			
+			For i = 0 To intRssItems
+			    strRssDesc = ""
+
+				Set objRSSItem = arrRssItems.Item(i)
+				For Each objChild in objRSSItem.childNodes
+					Select Case LCase(objChild.nodeName)
+						Case "link"
+							strRsslink = objChild.text
+						Case "title"
+							strRssTitle = objChild.text
+						Case "description"
+							strRssDesc = objChild.text
+					End Select
+				Next
+ 
+				j = j + 1
+
+                tmpOut = ""
+				If j < Clng(intMax) Then
+					strItemContent = Replace(strTplItem, "{LINK}", strRsslink)
+					strItemContent = Replace(strItemContent, "{TITLE}", strRssTitle)
+					strItemContent = Replace(strItemContent, "{DESCRIPTION}", Escape(strRssDesc))
+
+					output = output & (strItemContent)
+				ElseIf j > Clng(intMax) Then
+                    exit for
+				End If
+
+				If (j < Clng(intMax) - 1) and (i < intRssItems) Then 
+					output = output & "," & chr(13)
+				End If
+			Next
+
+			output = output & (strTplFooter)
+ 
+ 			' Clean-up
+			Set objChild = Nothing
+			Set objRssItem = Nothing
+ 		Else
+			output = output & (strErrMsg)
+		End If
+
+        rssFromBlogger = output
+	End Function
+
+
 	Public Function rssFromFlickr(strFeedUri, intMax)
         output = ""
 		' ------- Configuration variables
@@ -112,7 +255,7 @@ Class RSS
 
 
 
-	Function rssFromYouTube(strFeedUri, intMax)
+	Public Function rssFromYouTube(strFeedUri, intMax)
 
         output = ""
 		' ------- Configuration variables
