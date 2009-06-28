@@ -42,30 +42,16 @@ Class RSSLib
 	End Function
 
 
+
 'Get RSS from Blogger
 	Public Function rssFromBlogger(strFeedUri, intMax)
-        Dim output : output = ""
-		' ------- Configuration variables
-			' strContactEmail. Webmaster contact email
-			' strErrMsg. Error message that will be displayed if no items exist in the RSS feed
-			Dim strContactEmail, strErrMsg
+        output = ""
 
-			strContactEmail = vbNullString
-			strErrMsg = "An error occurred while trying to process " & strFeedUri & ".<br />Please contact the " & _
-				"<a href=""mailto:" & strContactEmail & """>webmaster</a>."
+		Dim strTplHeader, strTplFooter, strTplItem
 
-		' ------- Template variables:
-			' strTplHeader = HTML template header
-			' strTplFooter = HTML template footer
-			' strTplItem = HTML item template
-				' {LINK} will be replaced with item link
-				' {TITLE} will be replaced with item title
-				' {DESCRIPTION} will be replaced with item description
-			Dim strTplHeader, strTplFooter, strTplItem
-
-			strTplHeader = "["
-			strTplFooter = "]"
- 			strTplItem = "{""link"":""{LINK}"",""title"":""{TITLE}"",""description"":""{DESCRIPTION}""}"
+		strTplHeader = "["
+		strTplFooter = "]"
+		strTplItem = "{""link"":""{LINK}"",""title"":""{TITLE}"",""description"":""{DESCRIPTION}""}"
 
 		' ------- End variables
 
@@ -84,17 +70,22 @@ Class RSSLib
 		' Clean-up
 		Set objXml = Nothing
 
-		Set objDom = Server.CreateObject("MSXML2.DomDocument.3.0")
+
+
+		Set objDom = Server.CreateObject("Microsoft.XMLDOM")
 		objDom.async = false
 		objDom.LoadXml(strXml)
 		' Collect all "items" from downloaded RSS
 		Set arrRssItems = objDom.getElementsByTagName("item")
 		' Clean-up
-		Set objDom = Nothing
+		'Set objDom = Nothing
+
+
 
 		intRssItems = arrRssItems.Length - 1
 
-		If intRssItems > 0 Then
+
+		If intRssItems > -1 Then
 			output = output & (strTplHeader)
 			j = -1
 			
@@ -197,7 +188,7 @@ Class RSSLib
 
 		intRssItems = arrRssItems.Length - 1
 
-		If intRssItems > 0 Then
+		If intRssItems > -1 Then
 			output = output & (strTplHeader)
 			j = -1
 
@@ -312,7 +303,7 @@ Class RSSLib
 
 		intRssItems = arrRssItems.Length - 1
 
-		If intRssItems > 0 Then
+		If intRssItems > -1 Then
 
 			output = output & (strTplHeader)
 			j = -1

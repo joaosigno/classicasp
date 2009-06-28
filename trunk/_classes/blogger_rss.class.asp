@@ -28,8 +28,6 @@ Class RssBlogger
         sql = "select url from rss where principalBlogger = 1 "
         Set rs = conn.execute(sql)
 
-		'Response.Write rs("url")
-		'Response.End
 
         tmp2 = r.rssFromBlogger(rs("url"), maxNews)
 
