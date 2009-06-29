@@ -41,7 +41,8 @@ Class RssYoutube
 
     Public Function toUpdateRss(id,titulo,textoCurto,mediaTipo,url)
         Set n = new RSSLib
-        strError = n.rssTest(url)
+        strFeedUri = "http://gdata.youtube.com/feeds/base/users/"& url &"/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile"
+        strError = n.rssTest(strFeedUri)
         
         If strError = "" Then
 			Set conn = Session("objConn")
