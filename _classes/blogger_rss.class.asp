@@ -24,7 +24,7 @@ Class RssBlogger
     End Function
 
 
-    Public Function getPrincipalRss(maxNews)
+    Public Function getPrincipalRssFeed(maxNews)
         Set r = new RSSLib
         Set conn = Session("objConn")
         sql = "select url from rss where principalBlogger = 1 "
@@ -32,7 +32,7 @@ Class RssBlogger
 
         tmp2 = r.rssFromBlogger(rs("url"), maxNews)
 
-        getPrincipalRss = "{""rss"":" & tmp2 &"}"
+        getPrincipalRssFeed = "{""rss"":" & tmp2 &"}"
     End Function
 
 

@@ -27,10 +27,18 @@ Class Index
 		listaRssBlogger = res
     End Function
 
+    Public Function listaPrincipalRssBlogger()
+        recordsPerPage = "50"
+        Set n = new RssBlogger
+		res = n.getPrincipalRss(recordsPerPage)
+		listaRssBlogger = res
+    End Function
+
+
     Public Function principalRssBlogger(maxNews)
         Set r = new RssBlogger
         Dim tmp2
-        tmp2 = r.getPrincipalRss(maxNews)
+        tmp2 = r.getPrincipalRssFeed(maxNews)
         principalRssBlogger = tmp2
     End Function
 
@@ -41,6 +49,7 @@ Class Index
             .Add "function listaRssImages", "maxNews"
             .Add "function listaRssVideos", "maxNews"
             .Add "function listaRssBlogger", "id,page"
+            .Add "function listaPrincipalRssBlogger", ""
             .Add "function principalRssBlogger", "maxNews"
         End With
     End Function
