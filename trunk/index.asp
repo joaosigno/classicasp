@@ -64,7 +64,7 @@ body{
 	}
 
 	window.onload = function(){
-		new _Index.listaRssBlogger(retorna, "0", "0");
+	    new _Index.listaPrincipalRssBlogger(retorna);
 	}
 
 </script>
