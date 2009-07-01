@@ -15,6 +15,7 @@ Class RssBlogger
         getRss = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
     End Function
 
+
     Public Function getOneRss(id)
         Set conn = Session("objConn")
         sql = "select idRss,titulo,textoCurto,mediatipo,url from rss where idRss = " & id & " "
@@ -22,12 +23,12 @@ Class RssBlogger
         getOneRss = "{""rss"":" & toJSON(rs) &"}"
     End Function
 
+
     Public Function getPrincipalRss(maxNews)
         Set r = new RSSLib
         Set conn = Session("objConn")
         sql = "select url from rss where principalBlogger = 1 "
         Set rs = conn.execute(sql)
-
 
         tmp2 = r.rssFromBlogger(rs("url"), maxNews)
 
@@ -88,7 +89,6 @@ Class RssBlogger
 
 		setPrincipal = "{""error"":""" & strError & """}"
 	End Function
-
 
 
     Public Function toDeleteRss(id)

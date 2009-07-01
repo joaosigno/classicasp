@@ -9,28 +9,67 @@
 <script src="_client/mjt.js"></script>
 <script src="_client/exibe_flash.js"></script>
 
-<script language="javascript" type="text/javascript">
-</script>
-
 <style>
+body{
+	clear:both;
+    font:normal 8pt 'tahoma';
+}
 #theGrid{
     height:200px;
-    width:250px;
+    width:350px;
     overflow:auto;
+}
+#containerRSS
+{
+	float:right;
+	margin-right:50px;
+}
+#formRSS .txtForm
+{
+	width:250px;
     font:normal 8pt 'tahoma';
+}
+#saveBox
+{
+	background:#FF0;
+	width:350px;
+	height:100px;
+	text-align:center;
+	padding:40px 50px;
+	font:bold 12pt Tahoma;
+
+	z-index:100;
+	float:right;
+	margin-right:-350px;
+	margin-top:220px;
+	_margin-top:230px;
+	visibility:hidden;
 }
 </style>
 
+
 <script>
+	var objBlogger = null;
+
 	function retorna(msg) {
-		alert(msg);
+		objBlogger = JSON.parse(msg);
+		$_('theGrid').style.visibility = 'hidden';
+		$_('pages').style.visibility = 'hidden';
+		$_('theGrid').innerHTML = $_('theGridraw').innerHTML;
+		$_('pages').innerHTML = $_('pagesraw').innerHTML;
+		mjt.run('theGrid');
+		mjt.run('pages');
+		$_('theGrid').style.visibility = 'visible';
+		$_('pages').style.visibility = 'visible';
 	}
 
 	window.onload = function(){
-		new _Index.listaRssBlogger(retorna,50);
+		new _Index.listaRssBlogger(retorna, "0", "0");
 	}
 
 </script>
+
+
 
 
 </head>
@@ -39,7 +78,25 @@
 <body>
 
 
+<div id="containerRSS">
 
+	<div id="theGridraw" style="visibility:hidden;">
+		<span mjt.for="n in objBlogger.rss">
+			${n.titulo} <br />
+		</span>
+	</div>
+
+	<div id="pagesraw" style="visibility:hidden;">
+		<span mjt.def="mklink(n)"><a href="javascript:_Index.listaRssBlogger(retorna,0 , $n);">$n</a></span>
+		<span  mjt.for="(x = 0; x < objBlogger.pages; x++)">${objBlogger.pages== 1?'':mklink(x)} </span>
+	</div>
+
+
+	<div id="theGrid"></div>
+	<div id="pages"></div>
+
+
+</div>
 
 
 
