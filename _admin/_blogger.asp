@@ -159,7 +159,7 @@ body{
 		Descrição : <input type="text" value="" id="aRssShortText_" class="txtForm" />
 			<input type="hidden" id="aRssTipoMidia_" value="" />
 		<br />
-		Url do RSS Feed : <input type="text" value="" id="aRssUrl_" class="txtForm" />
+		Nome do blog : <input type="text" value="" id="aRssUrl_" class="txtForm" />
 		<br />
 
 		<input type="button" value="Salvar" onclick="saveRss();"/>

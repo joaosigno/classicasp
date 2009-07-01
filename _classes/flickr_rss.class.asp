@@ -25,7 +25,7 @@ Class RssFlickr
 
     Public Function toInsertRss(titulo,textoCurto,mediaTipo,url)
         Set n = new RSSLib
-        strError = n.rssTest(url)
+        strError = n.rssTest(url, "")
         
         If strError = "" Then
             Set conn = Session("objConn")
@@ -41,7 +41,7 @@ Class RssFlickr
 
     Public Function toUpdateRss(id,titulo,textoCurto,mediaTipo,url)
         Set n = new RSSLib
-        strError = n.rssTest(url)
+        strError = n.rssTest(url, "")
         
         If strError = "" Then
 			Set conn = Session("objConn")
