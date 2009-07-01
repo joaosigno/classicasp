@@ -12,6 +12,8 @@ Class RSSLib
 			tmp = "http://" & strFeedUri & ".blogspot.com/feeds/posts/default"
 		ElseIf mediaTipo = "youtube" Then
 			tmp = "http://gdata.youtube.com/feeds/base/users/"& strFeedUri &"/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile"
+		Else
+			tmp = strFeedUri
 		End If
 
 		strContactEmail = vbNullString
