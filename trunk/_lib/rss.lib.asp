@@ -1,10 +1,18 @@
 ﻿<%
 Class RSSLib
 'Tests if RSS address exists or is authorized to connect
-	Public Function rssTest(strFeedUri)
+	Public Function rssTest(strFeedUri, mediaTipo)
 	    On Error resume next
         output = ""
 		Dim strErrMsg
+
+		tmp = ""
+
+		If mediaTipo = "blogger" Then
+			tmp = "http://" & strFeedUri & ".blogspot.com/feeds/posts/default"
+		ElseIf mediaTipo = "youtube" Then
+			tmp = "http://gdata.youtube.com/feeds/base/users/"& strFeedUri &"/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile"
+		End If
 
 		strContactEmail = vbNullString
 		strErrMsg = "Rss não encontrado, ou contém erros"
@@ -15,7 +23,7 @@ Class RSSLib
 
 		' Create XML object and open RSS feed
 		Set objXml = Server.CreateObject("MSXML2.XMLHTTP.3.0")
-		objXml.Open "GET", strFeedUri, false
+		objXml.Open "GET", tmp, false
 		objXml.Send()
 		strXml = objXml.ResponseText
 		' Clean-up
@@ -85,12 +93,9 @@ Class RSSLib
 		' Collect all "items" from downloaded RSS
 		Set arrRssItems = objDom.getElementsByTagName("item")
 		' Clean-up
-		'Set objDom = Nothing
-
-
+		Set objDom = Nothing
 
 		intRssItems = arrRssItems.Length - 1
-
 
 		If intRssItems > -1 Then
 			output = output & (strTplHeader)

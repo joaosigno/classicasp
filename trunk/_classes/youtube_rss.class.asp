@@ -25,7 +25,7 @@ Class RssYoutube
 
     Public Function toInsertRss(titulo,textoCurto,mediaTipo,url)
         Set n = new RSSLib
-        strError = n.rssTest(url)
+        strError = n.rssTest(url, "youtube")
         
         If strError = "" Then
             Set conn = Session("objConn")
@@ -42,7 +42,7 @@ Class RssYoutube
     Public Function toUpdateRss(id,titulo,textoCurto,mediaTipo,url)
         Set n = new RSSLib
         strFeedUri = "http://gdata.youtube.com/feeds/base/users/"& url &"/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile"
-        strError = n.rssTest(strFeedUri)
+        strError = n.rssTest(strFeedUri, "youtube")
         
         If strError = "" Then
 			Set conn = Session("objConn")
