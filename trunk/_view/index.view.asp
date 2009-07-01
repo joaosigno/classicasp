@@ -15,13 +15,24 @@ Class Index
         listaRssVideos = tmp2
     End Function
 
-    Public Function listaRssBlogger(maxNews)
+
+    Public Function listaRssBlogger(id, page)
+        recordsPerPage = "5"
+        Set n = new RssBlogger
+		If id = "0" Then
+			res = n.getRss(page,recordsPerPage)
+		Else
+			res = n.getOneRss(id)
+		End If
+		listaRssBlogger = res
+    End Function
+
+    Public Function principalRssBlogger(maxNews)
         Set r = new RssBlogger
         Dim tmp2
         tmp2 = r.getPrincipalRss(maxNews)
-        listaRssBlogger = tmp2
+        principalRssBlogger = tmp2
     End Function
-
 
 
     Public Function reflectMethod()
@@ -29,7 +40,8 @@ Class Index
         With reflectMethod
             .Add "function listaRssImages", "maxNews"
             .Add "function listaRssVideos", "maxNews"
-            .Add "function listaRssBlogger", "maxNews"
+            .Add "function listaRssBlogger", "id,page"
+            .Add "function principalRssBlogger", "maxNews"
         End With
     End Function
 End Class
