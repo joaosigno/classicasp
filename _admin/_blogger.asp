@@ -130,7 +130,7 @@ body{
 			${deleteOneRSS(n.idrss)}
 			${(x1++) * (objRss.actualPage + 1) } - $n.titulo 
 			<br />
-			Mídia : ${n.mediatipo==null?'-':n.mediatipo=='blogger'?'blogger/twiter/outros':n.mediatipo}
+			Mídia : ${n.mediatipo==null?'-':n.mediatipo=='blogger'?'blogger':n.mediatipo}
 			<br />
 			${n.textocurto==null?'-':n.textocurto}
 			<br />
