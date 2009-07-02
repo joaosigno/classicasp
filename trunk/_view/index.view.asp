@@ -30,8 +30,8 @@ Class Index
     Public Function listaPrincipalRssBlogger()
         recordsPerPage = "50"
         Set n = new RssBlogger
-		res = n.getPrincipalRss(recordsPerPage)
-		listaRssBlogger = res
+		res = n.getPrincipalRssFeed(recordsPerPage)
+		listaPrincipalRssBlogger = res
     End Function
 
 
