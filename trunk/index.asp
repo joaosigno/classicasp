@@ -15,6 +15,8 @@ body{
     font:normal 8pt 'tahoma';
 }
 #theGrid{
+	height:250px;
+	width:350px;
     overflow:auto;
 }
 #containerRSS
@@ -84,6 +86,7 @@ body{
 
 	<div id="theGridraw" style="visibility:hidden;">
 		<span mjt.for="n in objBlogger.rss">
+			<hr />
 			${n.title} <br />
 			${mjt.bless(n.description)} <br />
 		</span>
@@ -102,6 +105,25 @@ body{
 
 </div>
 
+<div id="Div0">
+	<div id="Div1" style="visibility:hidden;">
+		<span mjt.for="n in objBlogger.rss">
+			<hr />
+			${n.title} <br />
+			${mjt.bless(n.description)} <br />
+		</span>
+	</div>
+
+	<div id="Div2" style="visibility:hidden;">
+		<span mjt.def="alerta(n)">${alert(n)}</span>
+		<span mjt.def="mklink(n)"><a href="javascript:_Index.listaRssBlogger(retorna,0 , $n);">$n</a></span>
+		<span  mjt.for="(x = 0; x < objBlogger.pages; x++)">${objBlogger.pages== 1?'':mklink(x)} </span>
+	</div>
+
+
+	<div id="Div3"></div>
+	<div id="Div4"></div>
+</div>
 
 
 
