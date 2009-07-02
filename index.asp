@@ -15,8 +15,6 @@ body{
     font:normal 8pt 'tahoma';
 }
 #theGrid{
-    height:200px;
-    width:350px;
     overflow:auto;
 }
 #containerRSS
@@ -67,6 +65,8 @@ body{
 	    new _Index.listaPrincipalRssBlogger(retorna);
 	}
 
+
+
 </script>
 
 
@@ -77,16 +77,20 @@ body{
 
 <body>
 
+<img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/3529317068477049888-1923876767128121849?l=kodomonotoki.blogspot.com'/>
+
 
 <div id="containerRSS">
 
 	<div id="theGridraw" style="visibility:hidden;">
 		<span mjt.for="n in objBlogger.rss">
-			${n.titulo} <br />
+			${n.title} <br />
+			${mjt.bless(n.description)} <br />
 		</span>
 	</div>
 
 	<div id="pagesraw" style="visibility:hidden;">
+		<span mjt.def="alerta(n)">${alert(n)}</span>
 		<span mjt.def="mklink(n)"><a href="javascript:_Index.listaRssBlogger(retorna,0 , $n);">$n</a></span>
 		<span  mjt.for="(x = 0; x < objBlogger.pages; x++)">${objBlogger.pages== 1?'':mklink(x)} </span>
 	</div>
@@ -97,6 +101,7 @@ body{
 
 
 </div>
+
 
 
 

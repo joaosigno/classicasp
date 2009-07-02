@@ -11,8 +11,8 @@
         Set Session("_usuario") = nothing
 
         Set objConn=Server.CreateObject("ADODB.Connection") 
-        'objConn.ConnectionString="DRIVER={MySQL ODBC 3.51 Driver};SERVER=localhost;PORT=3306;DATABASE=contentdatabase;USER=root;PASSWORD=;OPTION=3;"
-        objConn.ConnectionString="DRIVER={MySQL ODBC 3.51 Driver};SERVER=localhost;PORT=3306;DATABASE=contentdatabase;USER=root;PASSWORD=mysql;OPTION=3;"
+        objConn.ConnectionString="DRIVER={MySQL ODBC 3.51 Driver};SERVER=localhost;PORT=3306;DATABASE=contentdatabase;USER=root;PASSWORD=;OPTION=3;"
+        'objConn.ConnectionString="DRIVER={MySQL ODBC 3.51 Driver};SERVER=localhost;PORT=3306;DATABASE=contentdatabase;USER=root;PASSWORD=mysql;OPTION=3;"
         objConn.Open
 
 
