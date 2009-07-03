@@ -23,6 +23,18 @@ Class RssFlickr
     End Function
 
 
+    Public Function getPrincipalRssFeed(maxNews)
+        Set r = new RSSLib
+        Set conn = Session("objConn")
+        sql = "select url from rss where principalFlickr = 1 "
+        Set rs = conn.execute(sql)
+
+        tmp2 = r.rssFromBlogger(rs("url"), maxNews)
+
+        getPrincipalRssFeed = "{""rss"":" & tmp2 &"}"
+    End Function
+
+
     Public Function toInsertRss(titulo,textoCurto,mediaTipo,url)
         Set n = new RSSLib
         strError = n.rssTest(url, "")
