@@ -4,8 +4,8 @@ Class Index
     Public Function listaRssImages(maxNews)
         Set r = new RssFlickr
         Dim tmp2
-        tmp2 = r.rssFromFlickr("http://api.flickr.com/services/feeds/photos_public.gne?id=77449999@N00&lang=pt-br&format=rss_200", Clng(maxNews))
-        listaRssImages = tmp2
+        tmp2 = r.rssFromFlickr(Clng(maxNews))
+        listaRssImages = "foo"
     End Function
 
     Public Function listaRssVideos(maxNews)
@@ -32,6 +32,22 @@ Class Index
         Set n = new RssBlogger
 		res = n.getPrincipalRssFeed(recordsPerPage)
 		listaPrincipalRssBlogger = res
+    End Function
+
+
+    Public Function principalRssYoutube(maxNews)
+        Set r = new RssYoutube
+        Dim tmp2
+        tmp2 = r.getPrincipalRssFeed(maxNews)
+        principalRssYoutube = "foo"
+    End Function
+
+
+    Public Function principalRssFlickr(maxNews)
+        Set r = new RssFlickr
+        Dim tmp2
+        tmp2 = r.getPrincipalRssFeed(maxNews)
+        principalRssFlickr = "foo"
     End Function
 
 

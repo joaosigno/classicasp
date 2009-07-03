@@ -126,6 +126,26 @@ body{
 </div>
 
 
+<div id="Div5">
+	<div id="Div6" style="visibility:hidden;">
+		<span mjt.for="n in objBlogger.rss">
+			<hr />
+			${n.title} <br />
+			${mjt.bless(n.description)} <br />
+		</span>
+	</div>
+
+	<div id="Div7" style="visibility:hidden;">
+		<span mjt.def="alerta(n)">${alert(n)}</span>
+		<span mjt.def="mklink(n)"><a href="javascript:_Index.listaRssBlogger(retorna,0 , $n);">$n</a></span>
+		<span  mjt.for="(x = 0; x < objBlogger.pages; x++)">${objBlogger.pages== 1?'':mklink(x)} </span>
+	</div>
+
+
+	<div id="Div8"></div>
+	<div id="Div9"></div>
+</div>
+
 
 
 </body>
