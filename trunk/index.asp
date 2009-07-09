@@ -1,13 +1,16 @@
-﻿<!-- #include file="./_lib/asp3tojson.lib.asp" -->
-<!-- #include file="./_view/index.view.asp" -->
-<html>
+﻿<!-- #include file="./_template/header.tpl.asp" -->
 
-<head>
+<!-- #include file="./_lib/asp3tojson.lib.asp" -->
+<!-- #include file="./_view/index.view.asp" -->
+
+
 
 
 
 <script src="_client/mjt.js"></script>
 <script src="_client/exibe_flash.js"></script>
+
+
 
 <style>
 body{
@@ -16,7 +19,7 @@ body{
 }
 #theGrid{
 	height:250px;
-	width:350px;
+	width:500px;
     overflow:auto;
 }
 #containerRSS
@@ -24,27 +27,8 @@ body{
 	float:right;
 	margin-right:50px;
 }
-#formRSS .txtForm
-{
-	width:250px;
-    font:normal 8pt 'tahoma';
-}
-#saveBox
-{
-	background:#FF0;
-	width:350px;
-	height:100px;
-	text-align:center;
-	padding:40px 50px;
-	font:bold 12pt Tahoma;
 
-	z-index:100;
-	float:right;
-	margin-right:-350px;
-	margin-top:220px;
-	_margin-top:230px;
-	visibility:hidden;
-}
+
 </style>
 
 
@@ -99,7 +83,7 @@ body{
 	</div>
 
 
-	<div id="theGrid"></div>
+	<div id="theGrid"><img src="_img/icon_inprogress.gif" /></div>
 	<div id="pages"></div>
 
 
@@ -147,8 +131,4 @@ body{
 </div>
 
 
-
-</body>
-
-
-</html>
+<!-- #include file="./_template/footer.tpl.asp" -->
