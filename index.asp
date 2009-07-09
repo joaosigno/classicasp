@@ -24,7 +24,7 @@ body{
 }
 #containerRSS
 {
-	float:right;
+	float:right; 
 	margin-right:50px;
 }
 
