@@ -136,17 +136,10 @@ body:nth-of-type(1) #banner
 	margin:0 30px 0 30px;
 }
 
-#content
-{
-	min-height:600px;
-	_height:500px;
-	width:1002px;
-	text-align:-moz-center;
-	_text-align:center;
-}
-
 #footer
 {
+	float:left;
+	display:block;
 	height:300px;
 	width:100%;
 	background-image:url('_img/bones_footer.jpg');
@@ -196,7 +189,6 @@ body:nth-of-type(1) #banner
 	color:#FFF;
 	text-decoration:none;
 }
-
 
 </style>
 

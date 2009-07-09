@@ -3,127 +3,137 @@
 <!-- #include file="./_lib/asp3tojson.lib.asp" -->
 <!-- #include file="./_view/index.view.asp" -->
 
-
-
-
-
-<script src="_client/mjt.js"></script>
-<script src="_client/exibe_flash.js"></script>
-
-
-
-<style>
-body{
-	clear:both;
-    font:normal 8pt 'tahoma';
-}
-#theGrid{
-	height:250px;
-	width:500px;
-    overflow:auto;
-}
-#containerRSS
-{
-	float:right; 
-	margin-right:50px;
-}
-
-
-</style>
-
-
-<script>
-	var objBlogger = null;
-
-	function retorna(msg) {
-		objBlogger = JSON.parse(msg);
-		$_('theGrid').style.visibility = 'hidden';
-		$_('pages').style.visibility = 'hidden';
-		$_('theGrid').innerHTML = $_('theGridraw').innerHTML;
-		$_('pages').innerHTML = $_('pagesraw').innerHTML;
-		mjt.run('theGrid');
-		mjt.run('pages');
-		$_('theGrid').style.visibility = 'visible';
-		$_('pages').style.visibility = 'visible';
+	<style>
+	#content
+	{
+		width:1002px;
+		text-align:left;
+		display:block;
 	}
 
-	window.onload = function(){
-	    new _Index.listaPrincipalRssBlogger(retorna);
+	#diario
+	{
+		width:150px;
+		height:195px;
+		background-image:url('_img/diario_de_bordo.jpg');
+		background-position:-3px 3px;
+		background-repeat:no-repeat;
+	}
+	#menu_left
+	{
+		border:solid 1px;
+		float:left;
+		width:150px;
+		margin:10px 0 40px 0;
 	}
 
 
+	#grupo
+	{
+		width:150px;
+		height:27px;
+		background-image:url('./_img/bg_menu_top.jpg');
+		background-repeat:repeat-x;
+		margin:10px 0 0 0;
+		text-align:center;
+		cursor:pointer;
+	}
 
-</script>
+	#videos
+	{
+		width:150px;
+		height:150px;
+		background-image:url('./_img/bg_menu_item.jpg');
+		background-repeat:repeat-x;
+		margin:0 0 5px 0;
+	}
+
+	#titleVideos
+	{
+		width:150px;
+		height:28px;
+		background-image:url('./_img/bg_menu_item_videos.jpg');
+		background-repeat:no-repeat;
+		background-position:50px 0;
+		text-align:right;
+	}
+
+	#noticias
+	{
+		width:150px;
+		height:150px;
+		background-image:url('./_img/bg_menu_item.jpg');
+		background-repeat:repeat-x;
+		margin:0 0 5px 0;
+	}
+
+	#titleNoticias
+	{
+		width:150px;
+		height:28px;
+		background-image:url('./_img/bg_menu_item_noticias.jpg');
+		background-repeat:no-repeat;
+		background-position:50px 0;
+		text-align:right;
+	}
+
+	#imagens
+	{
+		width:150px;
+		height:150px;
+		background-image:url('./_img/bg_menu_item.jpg');
+		background-repeat:repeat-x;
+		margin:0 0 5px 0;
+	}
+
+	#titleImagens
+	{
+		width:150px;
+		height:28px;
+		background-image:url('./_img/bg_menu_item_imagens.jpg');
+		background-repeat:no-repeat;
+		background-position:50px 0;
+		text-align:right;
+	}
+
+
+	</style>
+
+
+	<div id="content">
+		<div id="menu_left">
+			<div id="diario">&nbsp;</div>
+			<div id="grupo" onclick="document.location.href.replace('#',true);"><img src="_img/bg_menu_top_grupo.jpg" /></div>
+
+			<div id="videos">
+				<div id="titleVideos"><img src="_img/bg_menu_item_skull.jpg" /></div>
+				<div id="listVideos">lista</div>
+				<div class="vejaMais">veja mais &gt;&gt;</div>
+			</div>
+
+			<div id="noticias">
+				<div id="titleNoticias"><img src="_img/bg_menu_item_skull.jpg" /></div>
+				<div id="listNoticias">lista</div>
+				<div class="vejaMais">veja mais &gt;&gt;</div>
+			</div>
+
+			<div id="imagens">
+				<div id="titleImagens"><img src="_img/bg_menu_item_skull.jpg" /></div>
+				<div id="listImagens">lista</div>
+				<div class="vejaMais">veja mais &gt;&gt;</div>
+			</div>
+		</div>
 
 
 
 
-
-
-
-<div id="containerRSS">
-
-	<div id="theGridraw" style="visibility:hidden;">
-		<span mjt.for="n in objBlogger.rss">
-			<hr />
-			${n.title} <br />
-			${mjt.bless(n.description)} <br />
-		</span>
+		<div id="menu_center_right">
+			Conteudo aqui
+		</div>
 	</div>
 
-	<div id="pagesraw" style="visibility:hidden;">
-		<span mjt.def="alerta(n)">${alert(n)}</span>
-		<span mjt.def="mklink(n)"><a href="javascript:_Index.listaRssBlogger(retorna,0 , $n);">$n</a></span>
-		<span  mjt.for="(x = 0; x < objBlogger.pages; x++)">${objBlogger.pages== 1?'':mklink(x)} </span>
-	</div>
 
 
-	<div id="theGrid"><img src="_img/icon_inprogress.gif" /></div>
-	<div id="pages"></div>
-
-
-</div>
-
-<div id="Div0">
-	<div id="Div1" style="visibility:hidden;">
-		<span mjt.for="n in objBlogger.rss">
-			<hr />
-			${n.title} <br />
-			${mjt.bless(n.description)} <br />
-		</span>
-	</div>
-
-	<div id="Div2" style="visibility:hidden;">
-		<span mjt.def="alerta(n)">${alert(n)}</span>
-		<span mjt.def="mklink(n)"><a href="javascript:_Index.listaRssBlogger(retorna,0 , $n);">$n</a></span>
-		<span  mjt.for="(x = 0; x < objBlogger.pages; x++)">${objBlogger.pages== 1?'':mklink(x)} </span>
-	</div>
-
-
-	<div id="Div3"></div>
-	<div id="Div4"></div>
-</div>
-
-
-<div id="Div5">
-	<div id="Div6" style="visibility:hidden;">
-		<span mjt.for="n in objBlogger.rss">
-			<hr />
-			${n.title} <br />
-			${mjt.bless(n.description)} <br />
-		</span>
-	</div>
-
-	<div id="Div7" style="visibility:hidden;">
-		<span mjt.def="alerta(n)">${alert(n)}</span>
-		<span mjt.def="mklink(n)"><a href="javascript:_Index.listaRssBlogger(retorna,0 , $n);">$n</a></span>
-		<span  mjt.for="(x = 0; x < objBlogger.pages; x++)">${objBlogger.pages== 1?'':mklink(x)} </span>
-	</div>
-
-
-	<div id="Div8"></div>
-	<div id="Div9"></div>
-</div>
 
 
 
