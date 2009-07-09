@@ -58,12 +58,7 @@ body{
 
 
 
-</head>
 
-
-<body>
-
-<img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/3529317068477049888-1923876767128121849?l=kodomonotoki.blogspot.com'/>
 
 
 <div id="containerRSS">
@@ -129,6 +124,7 @@ body{
 	<div id="Div8"></div>
 	<div id="Div9"></div>
 </div>
+
 
 
 <!-- #include file="./_template/footer.tpl.asp" -->
