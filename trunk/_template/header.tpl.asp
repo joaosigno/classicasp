@@ -190,6 +190,13 @@ body:nth-of-type(1) #banner
 	text-decoration:none;
 }
 
+#content
+{
+	width:1002px;
+	text-align:left;
+	display:block;
+}
+
 </style>
 
 </head>
@@ -222,3 +229,6 @@ body:nth-of-type(1) #banner
 	</div>
 
 <!-- END HEADER -->
+
+
+	<div id="content">
