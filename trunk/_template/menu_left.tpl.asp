@@ -12,6 +12,7 @@
 
 	#diario
 	{
+		cursor:pointer;
 		width:150px;
 		height:195px;
 		background-image:url('_img/diario_de_bordo.jpg');
@@ -21,6 +22,7 @@
 
 	#grupo
 	{
+		cursor:pointer;
 		width:150px;
 		height:27px;
 		background-image:url('./_img/bg_menu_top.jpg');
@@ -102,13 +104,22 @@
 	
 	.vejaMais
 	{
+		width:100%;
 		height:20px;
 		color:#F00;
 		font-size:9pt;
 		text-align:right;
-		padding:3px 5px 2px 0;
+		padding:3px -2px 2px 0;
+		margin:0 -1px 0 0;
 		background-image:url('./_img/dot_gray.jpg');
 		cursor:pointer;
+	}
+
+	.vejaMais img
+	{
+		margin:0 1px -2px 0;
+		_margin:0 5px -1px 0;
+		padding:3px 12px 2px 0;
 	}
 
 	</style>
