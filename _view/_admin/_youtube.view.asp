@@ -1,4 +1,6 @@
-﻿<!-- #include file="./../../_classes/youtube_rss.class.asp" -->
+﻿<!-- #include file="./../../_lib/pagecounter.lib.asp" -->
+<!-- #include file="./../../_lib/rss.lib.asp" -->
+<!-- #include file="./../../_classes/youtube_rss.class.asp" -->
 <%
 Class Start
     Public Function listaNoticias(page)

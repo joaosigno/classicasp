@@ -68,7 +68,7 @@
 	}
 
 	
-	#description
+	#descriptionVd
 	{
 		float:left;
 		width:572px;
@@ -119,38 +119,64 @@
 	#moreVideos
 	{
 		height:25px;
-		_height:30px;
+		_height:10px;
 		padding:8px;
 	}
 </style>
 
-<script type="text/javascript" src="_client/exibe_flash.js"></script>
+
+<script type="text/javascript">
+	var videos = null;
+	var titulo = '';
+	var descricao = '';
+	var url = '';
+	var estrelas = '';
+
+	function listVideos(callBack) {
+		videos = JSON.parse(callBack);
+
+		firstVideoOfList(videos.rss[0]);
+	}
+
+	function firstVideoOfList(obj) {
+		titulo = obj.title;
+		descricao = obj.textDescription;
+		url = obj.link;
+		estrelas = obj.starsDescription;
+
+		mjt.run('youtubePlayer');
+		$_('youtubePlayer').style.visibility = 'visible';
+	}
+
+	window.onload = function() {
+		_Index.listaPrincipalRssYoutube(listVideos);
+	}
+</script>
 
 		<div id="menu_center_right">
 
 			<div id="boxVideos">
-				<div id="youtubePlayer">
+				<div id="youtubePlayer" style="visibility:hidden;">
 
-					<script>write_flash('http://www.youtube.com/v/iewQ45wJ7JA', 'video1', 572, 343, false); </script>
+					${mjt.bless(exibeflash(url, 'video1', 572, 343, false))}
 					
-					<div id="description">
+					<div id="descriptionVd">
 						<div id="descr">
 							<div id="tituloVideo">
-Joel Santana - Falando um inglês indefectível
+								${titulo}
 							</div>
-<br />
+
+							<br />
+
 							<div id="descriptionVideo">
-Joel Santana, tec. da África do Sul, 
-esbanjado desenvoltura, correção e um vasto vocabulário de dar inveja ! Confira !
-
-
-							<div id="moreVideos">
-							[mais &gt;&gt;]
-							</div>
+								${mjt.bless(descricao)}
+								<div id="moreVideos">
+								[mais &gt;&gt;]
+								</div>
  							</div>
 						</div>
 						<div id="strs">
-							<div id="stars"><img src="_img/stars/star_0_full.png" /><img src="_img/stars/star_1_full.png" /><img src="_img/stars/star_2_full.png" /><img src="_img/stars/star_3_full.png" /><img src="_img/stars/star_4_full.png" /></div>
+							<div id="stars"><img src="_img/stars/star_0_${estrelas[0]}.png" /><img src="_img/stars/star_1_${estrelas[1]}.png" /><img src="_img/stars/star_2_${estrelas[2]}.png" /><img src="_img/stars/star_3_${estrelas[3]}.png" /><img src="_img/stars/star_4_${estrelas[4]}.png" /></div>
 						</div>
 					</div>
 
@@ -158,7 +184,10 @@ esbanjado desenvoltura, correção e um vasto vocabulário de dar inveja ! Confi
 				<div id="ultimosVideos">
 					<div id="titleUltimosVideos"><img src="_img/bg_menu_item_videos_content.jpg" /></div>
 					<div id="listUltimosVideos">
-						dashdjkas
+						<ul>
+							<li class="list">lista</li>
+							<li class="list">lista</li>
+						</ul>
 					</div>
 
 					<div class="vejaMais border" onclick="">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>

@@ -1,5 +1,3 @@
-<!-- #include file="./../_lib/pagecounter.lib.asp" -->
-<!-- #include file="./../_lib/rss.lib.asp" -->
 <%
 Class RssYoutube
     Public Function getRss(page,quantity)
@@ -27,8 +25,7 @@ Class RssYoutube
         Set conn = Session("objConn")
         sql = "select url from rss where principalYoutube = 1 "
         Set rs = conn.execute(sql)
-
-        tmp2 = r.rssFromBlogger(rs("url"), maxNews)
+        tmp2 = r.rssFromYoutube(rs("url"), maxNews)
 
         getPrincipalRssFeed = "{""rss"":" & tmp2 &"}"
     End Function

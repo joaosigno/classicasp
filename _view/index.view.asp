@@ -1,19 +1,15 @@
-﻿<!-- #include file="./../_classes/blogger_rss.class.asp" -->
+﻿<!-- #include file="./../_lib/pagecounter.lib.asp" -->
+<!-- #include file="./../_lib/rss.lib.asp" -->
+<!-- #include file="./../_classes/youtube_rss.class.asp" -->
 <%
 Class Index
-    Public Function listaRssImages(maxNews)
-        Set r = new RssFlickr
-        Dim tmp2
-        tmp2 = r.rssFromFlickr(Clng(maxNews))
-        listaRssImages = "foo"
-    End Function
+	Public Sub Class_Initialize()
+		If IsEmpty(Session("timeInit")) Then
+			Session("timeInit") = now
+		End If
 
-    Public Function listaRssVideos(maxNews)
-        Set r = new RSSYoutube
-        Dim tmp2
-        tmp2 = r.rssFromYouTube(theUser, cLng(maxNews))
-        listaRssVideos = tmp2
-    End Function
+		'Response.Write DateDiff("n", Session("timeInit"), now)
+	End Sub
 
 
     Public Function listaRssBlogger(id, page)
@@ -35,20 +31,21 @@ Class Index
     End Function
 
 
-    Public Function principalRssYoutube(maxNews)
+    Public Function listaPrincipalRssYoutube()
+        recordsPerPage = "50"
         Set r = new RssYoutube
         Dim tmp2
-        tmp2 = r.getPrincipalRssFeed(maxNews)
-        principalRssYoutube = "foo"
+		If IsEmpty(Session("rssVideos")) Then
+			tmp2 = r.getPrincipalRssFeed(recordsPerPage)
+			Session("rssVideos") = tmp2
+		ElseIf DateDiff("n", Session("timeInit"), now) > 10 then
+			tmp2 = r.getPrincipalRssFeed(recordsPerPage)
+			Session("rssVideos") = tmp2
+			Session("timeInit") = now
+		End If
+        listaPrincipalRssYoutube = Session("rssVideos")
     End Function
 
-
-    Public Function principalRssFlickr(maxNews)
-        Set r = new RssFlickr
-        Dim tmp2
-        tmp2 = r.getPrincipalRssFeed(maxNews)
-        principalRssFlickr = "foo"
-    End Function
 
 
     Public Function principalRssBlogger(maxNews)
@@ -62,11 +59,8 @@ Class Index
     Public Function reflectMethod()
         Set reflectMethod = Server.CreateObject("Scripting.Dictionary")
         With reflectMethod
-            .Add "function listaRssImages", "maxNews"
-            .Add "function listaRssVideos", "maxNews"
-            .Add "function listaRssBlogger", "id,page"
             .Add "function listaPrincipalRssBlogger", ""
-            .Add "function principalRssBlogger", "maxNews"
+            .Add "function listaPrincipalRssYoutube", ""
         End With
     End Function
 End Class
