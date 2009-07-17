@@ -1,5 +1,5 @@
 function exibeflash(arquivo, id, largura, altura, transparente) {
-	arquivo += '&color1=0x2b405b&color2=0x000000&border=0';
+	arquivo += '&color1=0x2b405b&color2=0x000000&border=0&title=1';
 	var film = "";
 	film =	'<OBJECT classid=clsid:D27CDB6E-AE6D-11cf-96B8-444553540000 codebase=\\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0\" WIDTH=\"'+ largura +'\" HEIGHT=\"'+ altura +'\" id=\\"'+ id +'\\" ALIGN=\\"\\">' +
 			'<PARAM NAME=movie VALUE=\"'+ arquivo +'\">' +

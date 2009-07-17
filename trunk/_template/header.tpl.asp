@@ -7,6 +7,9 @@
 
 <title>OS Seres - Grupo Teatral</title>
 
+<script type="text/javascript" src="_client/mjt.js"></script>
+<script type="text/javascript" src="_client/exibe_flash.js"></script>
+
 <style> 
 *,body,div,span
 {
@@ -202,6 +205,7 @@ body:nth-of-type(1) #banner
 </head>
 
 <body bgcolor="#ffffff">
+
 
 <div id="conteiner" align="center">
 

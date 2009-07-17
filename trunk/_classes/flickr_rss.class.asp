@@ -1,5 +1,3 @@
-<!-- #include file="./../_lib/pagecounter.lib.asp" -->
-<!-- #include file="./../_lib/rss.lib.asp" -->
 <%
 Class RssFlickr
     Public Function getRss(page,quantity)
