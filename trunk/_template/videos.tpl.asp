@@ -50,6 +50,60 @@
 		overflow:auto;
 	}
 
+	#listUltimosVideos ul
+	{
+		background-image:url('./_img/dot_gray.jpg');
+	}
+
+	#listUltimosVideos li
+	{
+		height:80px;
+		background-image:url('./_img/bg_menu_sub_item.jpg');
+		background-repeat:repeat-x;
+		background-position:0 50px;
+		line-height:9px;
+		cursor:pointer;
+	}
+
+	#listUltimosVideos img
+	{
+		float:left;
+		margin:0 0 0 -8px;
+		_margin:0 0 0 -11px;
+	}
+
+	#titleVideos2
+	{
+		float:left;
+		width:168px;
+		_width:165px;
+		color:#FFF;
+		font-family:'tahoma';
+		font-weight: bold;
+		font-size:7pt;
+		margin:0 0 0 1px;
+		_margin:0 0 0 0;
+		padding:0 0 0 2px;
+		_padding:0 0 0 2px;
+		background-image:url('./_img/bg_description.png');
+		background-repeat:repeat-x;
+		background-position:0 -35px;
+	}
+	
+	#description2
+	{
+		float:left;
+		width:168px;
+		_width:165px;
+		font-family:'trebuchet ms';
+		font-weight: normal;
+		font-size:7pt;
+		margin:0;
+		padding:0 0 0 2px;
+	}
+
+
+
 	.border
 	{
 		float:left;
@@ -126,27 +180,46 @@
 
 
 <script type="text/javascript">
+	var nVideos = 0;
 	var videos = null;
 	var titulo = '';
 	var descricao = '';
 	var url = '';
-	var estrelas = '';
+	var estrela0 = '';
+	var estrela1 = '';
+	var estrela2 = '';
+	var estrela3 = '';
+	var estrela4 = '';
 
 	function listVideos(callBack) {
 		videos = JSON.parse(callBack);
 
-		firstVideoOfList(videos.rss[0]);
+		firstVideoOfList(videos.rss[0], 'load');
 	}
 
-	function firstVideoOfList(obj) {
+	function firstVideoOfList(obj, event) {
 		titulo = obj.title;
-		descricao = obj.textDescription;
+		descricao = obj.textDescription.substr(0, 255);
 		url = obj.link;
-		estrelas = obj.starsDescription;
+		estrela0 = obj.starsDescription[0];
+		estrela1 = obj.starsDescription[1];
+		estrela2 = obj.starsDescription[2];
+		estrela3 = obj.starsDescription[3];
+		estrela4 = obj.starsDescription[4];
 
+		$_('youtubePlayer').innerHTML = $_('rawVd').innerHTML;
 		mjt.run('youtubePlayer');
-		$_('youtubePlayer').style.visibility = 'visible';
+
+		if (event == 'load') {
+			mjt.run('listUltimosVideos');
+		}
 	}
+
+	function videoOfList(id) {
+		firstVideoOfList(videos.rss[id],'');
+	}
+
+
 
 	window.onload = function() {
 		_Index.listaPrincipalRssYoutube(listVideos);
@@ -156,37 +229,17 @@
 		<div id="menu_center_right">
 
 			<div id="boxVideos">
-				<div id="youtubePlayer" style="visibility:hidden;">
-
-					${mjt.bless(exibeflash(url, 'video1', 572, 343, false))}
-					
-					<div id="descriptionVd">
-						<div id="descr">
-							<div id="tituloVideo">
-								${titulo}
-							</div>
-
-							<br />
-
-							<div id="descriptionVideo">
-								${mjt.bless(descricao)}
-								<div id="moreVideos">
-								[mais &gt;&gt;]
-								</div>
- 							</div>
-						</div>
-						<div id="strs">
-							<div id="stars"><img src="_img/stars/star_0_${estrelas[0]}.png" /><img src="_img/stars/star_1_${estrelas[1]}.png" /><img src="_img/stars/star_2_${estrelas[2]}.png" /><img src="_img/stars/star_3_${estrelas[3]}.png" /><img src="_img/stars/star_4_${estrelas[4]}.png" /></div>
-						</div>
-					</div>
-
+				<div id="youtubePlayer">
 				</div>
 				<div id="ultimosVideos">
 					<div id="titleUltimosVideos"><img src="_img/bg_menu_item_videos_content.jpg" /></div>
 					<div id="listUltimosVideos">
-						<ul>
-							<li class="list">lista</li>
-							<li class="list">lista</li>
+						<ul mjt.for="n in videos.rss">
+							<li class="list" mjt.onclick="videoOfList(n.id)">
+									<img src="${n.imgDescription}" width="70" height="53" />
+									<span id="titleVideos2">${mjt.bless(n.title)}</span>
+									<span id="description2">${mjt.bless(n.textDescription.substr(0,180))}</span>
+							</li>
 						</ul>
 					</div>
 
@@ -197,3 +250,26 @@
 		</div>
 
 
+<span id="rawVd" style="display:none;">
+	${mjt.bless(exibeflash(url, 'video1', 572, 343, false))}
+	
+	<div id="descriptionVd">
+		<div id="descr">
+			<div id="tituloVideo">
+				${titulo}
+			</div>
+
+			<br />
+
+			<div id="descriptionVideo">
+				${mjt.bless(descricao)}
+				<div id="moreVideos">
+				[mais &gt;&gt;]
+				</div>
+			</div>
+		</div>
+		<div id="strs">
+			<div id="stars">${mjt.bless('&lt;img src="_img/stars/star_0_' + estrela0 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_1_' + estrela1 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_2_' + estrela2 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_3_' + estrela3 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_4_' + estrela4 +'.png" &gt;')}</div>
+		</div>
+	</div>
+</span>
