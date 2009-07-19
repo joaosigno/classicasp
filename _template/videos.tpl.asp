@@ -1,4 +1,53 @@
-﻿<style>
+﻿<script type="text/javascript">
+	var nVideos = 0;
+	var videos = null;
+	var titulo = '';
+	var descricao = '';
+	var url = '';
+	var estrela0 = '';
+	var estrela1 = '';
+	var estrela2 = '';
+	var estrela3 = '';
+	var estrela4 = '';
+
+	function listVideos(callBack) {
+		videos = JSON.parse(callBack);
+
+		firstVideoOfList(videos.rss[0], 'load');
+	}
+
+	function firstVideoOfList(obj, event) {
+		titulo = obj.title;
+		descricao = obj.textDescription.substr(0, 170);
+		url = obj.link;
+		estrela0 = obj.starsDescription[0];
+		estrela1 = obj.starsDescription[1];
+		estrela2 = obj.starsDescription[2];
+		estrela3 = obj.starsDescription[3];
+		estrela4 = obj.starsDescription[4];
+
+
+		$_('youtubePlayer').innerHTML = $_('rawVd').innerHTML;
+		mjt.run('youtubePlayer');
+
+		if (event == 'load') {
+			$_('listUltimosVideos').innerHTML = $_('listLastVideos').innerHTML;
+			mjt.run('listUltimosVideos');
+		}
+	}
+
+	function videoOfList(id) {
+		firstVideoOfList(videos.rss[id], '');
+	}
+
+
+
+	window.onload = function() {
+		_Index.listaPrincipalRssYoutube(listVideos);
+	}
+</script>
+
+<style>
 	#menu_center_right
 	{
 		float:left;
@@ -10,14 +59,6 @@
 	#boxVideos
 	{
 		width:852px;
-	}
-
-	#youtubePlayer
-	{
-		float:left;
-		width:575px;
-		padding:5px 0 0 3px;
-		margin:0 5px 0 0;
 	}
 
 	#ultimosvideos
@@ -60,7 +101,7 @@
 		height:80px;
 		background-image:url('./_img/bg_menu_sub_item.jpg');
 		background-repeat:repeat-x;
-		background-position:0 50px;
+		background-position:0 54px;
 		line-height:9px;
 		cursor:pointer;
 	}
@@ -75,14 +116,14 @@
 	#titleVideos2
 	{
 		float:left;
-		width:168px;
-		_width:165px;
+		width:169px;
+		_width:166px;
 		color:#FFF;
 		font-family:'tahoma';
 		font-weight: bold;
 		font-size:7pt;
-		margin:0 0 0 1px;
-		_margin:0 0 0 0;
+		margin:0;
+		_margin:0;
 		padding:0 0 0 2px;
 		_padding:0 0 0 2px;
 		background-image:url('./_img/bg_description.png');
@@ -95,14 +136,12 @@
 		float:left;
 		width:168px;
 		_width:165px;
-		font-family:'trebuchet ms';
+		font-family:'tahoma';
 		font-weight: normal;
-		font-size:7pt;
+		font-size:7.5pt;
 		margin:0;
 		padding:0 0 0 2px;
 	}
-
-
 
 	.border
 	{
@@ -114,162 +153,125 @@
 		padding:3px 0 -3px 0;
 		_padding:5px 0;
 	}
-	
-	#stars
+
+
+
+/*Player*/
+	#youtubePlayer
 	{
-		float:right;
-		text-align:right;
+		float:left;
+		width:575px;
+		padding:5px 0 0 3px;
+		margin:0 5px 0 0;
 	}
+	
 
 	
 	#descriptionVd
 	{
 		float:left;
 		width:572px;
+		height:110px;
 		background-image:url('./_img/bg_description.png');
 	}
 
-	#stars img
+
+	#stars
 	{
-		border:none;
-		margin:0;
-		padding:0;
+		float:right;
+		text-align:right;
+		width:280px;
+		margin-top:-121px;
+		_margin-top:0;
 	}
+
+	#contentVideosDesc
+	{
+		display:block;
+		float:left;
+	}
+	#tituloVideo
+	{
+		display:block;
+		float:left;
+		width:290px;
+		height:30px;
+		padding: 0 3px;
+		font-family:'trebuchet ms';
+		font-weight: bold;
+		font-size:10.3pt;
+		line-height:15px;
+		color:#FFF;
+	}
+
 
 	#descriptionVideo
 	{
-		width:290px;
-		height:70px;
-		_height:70px;
-		font-family:'trebuchet ms';
-		font-weight: normal;
-		font-size:8pt;
-		line-height:14px;
-		color:#CCC;
-		_margin:-10px 0 0 0;
-	}
-
-	#tituloVideo
-	{
-		width:290px;
-		height:150px;
-		font-family:'trebuchet ms';
-		font-weight: bold;
-		font-size:10.5pt;
-		padding:0 0 0 0.5px;
-		color:#FFF;
-		height:20px;
-		_height:30px;
-	}
-
-	#descr
-	{
+		display:block;
 		float:left;
 		width:290px;
-		height:100px;
-		padding:2px;
+		height:50px;
+		padding: 0 3px;
+		font-family:'trebuchet ms';
+		font-weight: normal;
+		font-size:8.5pt;
+		line-height:15px;
+		color:#FFF;
 	}
+
 	
 	#moreVideos
 	{
 		height:25px;
 		_height:10px;
 		padding:8px;
+		display:block;
+		float:left;
+		width:290px;
 	}
 </style>
-
-
-<script type="text/javascript">
-	var nVideos = 0;
-	var videos = null;
-	var titulo = '';
-	var descricao = '';
-	var url = '';
-	var estrela0 = '';
-	var estrela1 = '';
-	var estrela2 = '';
-	var estrela3 = '';
-	var estrela4 = '';
-
-	function listVideos(callBack) {
-		videos = JSON.parse(callBack);
-
-		firstVideoOfList(videos.rss[0], 'load');
-	}
-
-	function firstVideoOfList(obj, event) {
-		titulo = obj.title;
-		descricao = obj.textDescription.substr(0, 255);
-		url = obj.link;
-		estrela0 = obj.starsDescription[0];
-		estrela1 = obj.starsDescription[1];
-		estrela2 = obj.starsDescription[2];
-		estrela3 = obj.starsDescription[3];
-		estrela4 = obj.starsDescription[4];
-
-		$_('youtubePlayer').innerHTML = $_('rawVd').innerHTML;
-		mjt.run('youtubePlayer');
-
-		if (event == 'load') {
-			mjt.run('listUltimosVideos');
-		}
-	}
-
-	function videoOfList(id) {
-		firstVideoOfList(videos.rss[id],'');
-	}
-
-
-
-	window.onload = function() {
-		_Index.listaPrincipalRssYoutube(listVideos);
-	}
-</script>
 
 		<div id="menu_center_right">
 
 			<div id="boxVideos">
-				<div id="youtubePlayer">
-				</div>
+				<div id="youtubePlayer"><img class="videoInProgress" src="_img/loadinfo.net.gif" /></div>
+
 				<div id="ultimosVideos">
 					<div id="titleUltimosVideos"><img src="_img/bg_menu_item_videos_content.jpg" /></div>
 					<div id="listUltimosVideos">
-						<ul mjt.for="n in videos.rss">
-							<li class="list" mjt.onclick="videoOfList(n.id)">
-									<img src="${n.imgDescription}" width="70" height="53" />
-									<span id="titleVideos2">${mjt.bless(n.title)}</span>
-									<span id="description2">${mjt.bless(n.textDescription.substr(0,180))}</span>
-							</li>
-						</ul>
+						<img class="contentVideoInProgress" src="_img/loadinfo.net.gif" style="margin-left:40%;margin-top:70%;" />
 					</div>
-
 					<div class="vejaMais border" onclick="">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 				</div>
 			</div>
 
 		</div>
 
+<span id="listLastVideos" style="display:none;visibility:hidden;">
+	<ul mjt.for="n in videos.rss">
+		<li class="list" mjt.onclick="videoOfList(n.id)">
+				${mjt.bless('&lt;img src="' + n.imgDescription + '" width="70" height="53" &gt;')}
+				<span id="titleVideos2">${mjt.bless(n.title)}</span>
+				<span id="description2">${mjt.bless(n.textDescription.substr(0,168))}</span>
+		</li>
+	</ul>
+</span>
 
-<span id="rawVd" style="display:none;">
+
+<span id="rawVd" style="display:none;visibility:hidden;">
 	${mjt.bless(exibeflash(url, 'video1', 572, 343, false))}
 	
 	<div id="descriptionVd">
-		<div id="descr">
-			<div id="tituloVideo">
-				${titulo}
-			</div>
+		<span id="contentVideosDesc">
+			<span id="tituloVideo" >${titulo}</span>
 
-			<br />
-
-			<div id="descriptionVideo">
+			<span id="descriptionVideo">
 				${mjt.bless(descricao)}
-				<div id="moreVideos">
+			</span>
+			<span id="moreVideos">
 				[mais &gt;&gt;]
-				</div>
-			</div>
-		</div>
-		<div id="strs">
-			<div id="stars">${mjt.bless('&lt;img src="_img/stars/star_0_' + estrela0 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_1_' + estrela1 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_2_' + estrela2 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_3_' + estrela3 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_4_' + estrela4 +'.png" &gt;')}</div>
-		</div>
+			</span>
+		</span>
+		<span id="stars">${mjt.bless('&lt;img src="_img/stars/star_0_' + estrela0 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_1_' + estrela1 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_2_' + estrela2 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_3_' + estrela3 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_4_' + estrela4 +'.png" &gt;')}</span>
 	</div>
 </span>

@@ -19,7 +19,15 @@
 	font-weight:bold;
 }
 
+.videoInProgress
+{
+	margin: 25% 43%;
+}
 
+.contentVideoInProgress
+{
+	margin-left:50px;
+}
 
 #conteiner
 {
@@ -198,6 +206,7 @@ body:nth-of-type(1) #banner
 	width:1002px;
 	text-align:left;
 	display:block;
+	background:#FFF;
 }
 
 </style>
