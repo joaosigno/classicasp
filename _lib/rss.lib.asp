@@ -285,7 +285,7 @@ Class RSSLib
 
 			strTplHeader = "["
 			strTplFooter = "]"
- 			strTplItem = "{""link"":""{LINK}"",""title"":""{TITLE}"",""imgDescription"":""{imgDescription}""," &_
+ 			strTplItem = "{""id"":""{ID}"",""link"":""{LINK}"",""title"":""{TITLE}"",""imgDescription"":""{imgDescription}""," &_
  			             """timeDescription"":""{timeDescription}"",""textDescription"":""{textDescription}""," &_
  			             """viewsDescription"":""{viewsDescription}"",""ratingsDescription"":""{ratingsDescription}""," &_
  			             """starsDescription"":[""{starsDescription1}"",""{starsDescription2}"",""{starsDescription3}"",""{starsDescription4}"",""{starsDescription5}""]}"
@@ -381,6 +381,7 @@ Class RSSLib
 					tmpOutStar5 = Mid(strRssDesc, pos1Stars5 + Len("http://gdata.youtube.com/static/images/icn_star_"), ((pos2Stars5 - pos1Stars5) - Len("http://gdata.youtube.com/static/images/icn_star_")) )
 
 					strItemContent = Replace(strTplItem, "{LINK}", strRsslink)
+					strItemContent = Replace(strItemContent, "{ID}", i)
 					strItemContent = Replace(strItemContent, "{TITLE}", strRssTitle)
 
 					strItemContent = Replace(strItemContent, "{imgDescription}", tmpOut)
