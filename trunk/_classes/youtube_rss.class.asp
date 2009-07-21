@@ -1,6 +1,6 @@
 <%
 Class RssYoutube
-    Public Function getRss(page,quantity)
+    Public Function getMedias(page,quantity)
         Set conn = Session("objConn")
         sqlCount = "select count(idRss) as tot from rss where mediaTipo='youtube' "
         Set rs2 = conn.execute(sqlCount)
@@ -8,9 +8,9 @@ Class RssYoutube
         totPages = toCount(rs2("tot"),quantity)
         page = page * quantity
 
-        sql = "select idRss,titulo,textoCurto,mediatipo,principalYoutube,url from rss where mediaTipo='youtube' order by principalYoutube DESC,idRss Limit " & page & "," & quantity & ""
+        sql = "select idRss,titulo,textoCurto,mediatipo,principalYoutube,url from rss where mediaTipo='youtube' order by principalYoutube DESC,idRss DESC Limit " & page & "," & quantity & ""
         Set rs = conn.execute(sql)
-        getRss = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
+        getMedias = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
     End Function
 
     Public Function getOneRss(id)

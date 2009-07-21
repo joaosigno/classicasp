@@ -1,15 +1,8 @@
 ﻿<!-- #include file="./../../_classes/noticias.class.asp" -->
+<!-- #include file="./../../_lib/rss.lib.asp" -->
 <!-- #include file="./../../_classes/flickr_rss.class.asp" -->
 <%
 Class Start
-    Public Function listaNoticias(page)
-        recordsPerPage = "20"
-        Set n = new Noticias
-        listaNoticias = n.getNoticias(page,recordsPerPage)
-    End Function
-
-
-
     Public Function createRSS(idrss,titulo,textoCurto,mediaTipo,url)
         Set r = new RSSFlickr
 		If idrss = "0" Then

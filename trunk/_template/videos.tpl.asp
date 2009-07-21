@@ -40,11 +40,6 @@
 		firstVideoOfList(videos.rss[id], '');
 	}
 
-
-
-	window.onload = function() {
-		_Index.listaPrincipalRssYoutube(listVideos);
-	}
 </script>
 
 <style>
@@ -131,17 +126,6 @@
 		background-position:0 -35px;
 	}
 	
-	#description2
-	{
-		float:left;
-		width:168px;
-		_width:165px;
-		font-family:'tahoma';
-		font-weight: normal;
-		font-size:7.5pt;
-		margin:0;
-		padding:0 0 0 2px;
-	}
 
 	.border
 	{
@@ -229,49 +213,33 @@
 		float:left;
 		width:290px;
 	}
-</style>
 
-		<div id="menu_center_right">
 
-			<div id="boxVideos">
-				<div id="youtubePlayer"><img class="videoInProgress" src="_img/loadinfo.net.gif" /></div>
+	#description2
+	{
+		float:left;
+		width:168px;
+		_width:165px;
+		font-family:'tahoma';
+		font-weight: normal;
+		font-size:7.5pt;
+		margin:0;
+		padding:0 0 0 2px;
+	}
+	</style>
 
-				<div id="ultimosVideos">
-					<div id="titleUltimosVideos"><img src="_img/bg_menu_item_videos_content.jpg" /></div>
-					<div id="listUltimosVideos">
-						<img class="contentVideoInProgress" src="_img/loadinfo.net.gif" style="margin-left:40%;margin-top:70%;" />
-					</div>
-					<div class="vejaMais border" onclick="">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+
+	<div id="menu_center_right">
+		<div id="boxVideos">
+			<div id="youtubePlayer"></div>
+
+			<div id="ultimosVideos">
+				<div id="titleUltimosVideos"><img src="_img/bg_menu_item_videos_content.jpg" /></div>
+				<div id="listUltimosVideos">
+
 				</div>
+				<div class="vejaMais border" onclick="">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 			</div>
-
 		</div>
-
-<span id="listLastVideos" style="display:none;visibility:hidden;">
-	<ul mjt.for="n in videos.rss">
-		<li class="list" mjt.onclick="videoOfList(n.id)">
-				${mjt.bless('&lt;img src="' + n.imgDescription + '" width="70" height="53" &gt;')}
-				<span id="titleVideos2">${mjt.bless(n.title)}</span>
-				<span id="description2">${mjt.bless(n.textDescription.substr(0,168))}</span>
-		</li>
-	</ul>
-</span>
-
-
-<span id="rawVd" style="display:none;visibility:hidden;">
-	${mjt.bless(exibeflash(url, 'video1', 572, 343, false))}
-	
-	<div id="descriptionVd">
-		<span id="contentVideosDesc">
-			<span id="tituloVideo" >${titulo}</span>
-
-			<span id="descriptionVideo">
-				${mjt.bless(descricao)}
-			</span>
-			<span id="moreVideos">
-				[mais &gt;&gt;]
-			</span>
-		</span>
-		<span id="stars">${mjt.bless('&lt;img src="_img/stars/star_0_' + estrela0 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_1_' + estrela1 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_2_' + estrela2 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_3_' + estrela3 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_4_' + estrela4 +'.png" &gt;')}</span>
 	</div>
-</span>
+
