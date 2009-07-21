@@ -26,7 +26,7 @@ Class Start
         recordsPerPage = "5"
         Set n = new RSSYoutube
 		If id = "0" Then
-			res = n.getRss(page,recordsPerPage)
+			res = n.getMedias(page,recordsPerPage)
 		Else
 			res = n.getOneRss(id)
 		End If

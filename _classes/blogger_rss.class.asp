@@ -1,5 +1,18 @@
 <%
 Class RssBlogger
+    Public Function getMedias(page,quantity)
+        Set conn = Session("objConn")
+        sqlCount = "select count(idRss) as tot from rss where mediaTipo='blogger' "
+        Set rs2 = conn.execute(sqlCount)
+
+        totPages = toCount(rs2("tot"),quantity)
+        page = page * quantity
+
+        sql = "select idRss,titulo,textoCurto,mediatipo,principalBlogger,url from rss where mediaTipo='blogger' order by principalBlogger DESC,idRss DESC Limit " & page & "," & quantity & ""
+        Set rs = conn.execute(sql)
+        getMedias = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
+    End Function
+
     Public Function getRss(page,quantity)
         Set conn = Session("objConn")
         sqlCount = "select count(idRss) as tot from rss where mediaTipo='blogger' "
@@ -8,7 +21,7 @@ Class RssBlogger
         totPages = toCount(rs2("tot"),quantity)
         page = page * quantity
 
-        sql = "select idRss,titulo,textoCurto,mediatipo,principalBlogger,url from rss where mediaTipo='blogger' order by principalBlogger DESC,idRss Limit " & page & "," & quantity & ""
+        sql = "select idRss,titulo,textoCurto,mediatipo,principalBlogger,url from rss where mediaTipo='blogger' order by principalBlogger DESC,idRss DESC Limit " & page & "," & quantity & ""
         Set rs = conn.execute(sql)
         getRss = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
     End Function

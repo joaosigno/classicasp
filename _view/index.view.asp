@@ -1,6 +1,8 @@
 ﻿<!-- #include file="./../_lib/pagecounter.lib.asp" -->
 <!-- #include file="./../_lib/rss.lib.asp" -->
 <!-- #include file="./../_classes/youtube_rss.class.asp" -->
+<!-- #include file="./../_classes/blogger_rss.class.asp" -->
+<!-- #include file="./../_classes/flickr_rss.class.asp" -->
 <%
 Class Index
 	Public Sub Class_Initialize()
@@ -10,25 +12,6 @@ Class Index
 
 		'Response.Write DateDiff("n", Session("timeInit"), now)
 	End Sub
-
-
-    Public Function listaRssBlogger(id, page)
-        recordsPerPage = "5"
-        Set n = new RssBlogger
-		If id = "0" Then
-			res = n.getRss(page,recordsPerPage)
-		Else
-			res = n.getOneRss(id)
-		End If
-		listaRssBlogger = res
-    End Function
-
-    Public Function listaPrincipalRssBlogger()
-        recordsPerPage = "50"
-        Set n = new RssBlogger
-		res = n.getPrincipalRssFeed(recordsPerPage)
-		listaPrincipalRssBlogger = res
-    End Function
 
 
     Public Function listaPrincipalRssYoutube()
@@ -47,20 +30,33 @@ Class Index
     End Function
 
 
+	Public Function listaMenuLeftVideos(page)
+        recordsPerPage = 5
+        Set r = new RssYoutube
+		listaMenuLeftVideos = r.getMedias(page,recordsPerPage)
+	End Function
 
-    Public Function principalRssBlogger(maxNews)
+
+	Public Function listaMenuLeftNoticias(page)
+        recordsPerPage = 5
         Set r = new RssBlogger
-        Dim tmp2
-        tmp2 = r.getPrincipalRssFeed(maxNews)
-        principalRssBlogger = tmp2
-    End Function
+		listaMenuLeftNoticias = r.getMedias(page,recordsPerPage)
+	End Function
+
+	Public Function listaMenuLeftImagens(page)
+        recordsPerPage = 5
+        Set r = new RssFlickr
+		listaMenuLeftImagens = r.getMedias(page,recordsPerPage)
+	End Function
 
 
     Public Function reflectMethod()
         Set reflectMethod = Server.CreateObject("Scripting.Dictionary")
         With reflectMethod
-            .Add "function listaPrincipalRssBlogger", ""
             .Add "function listaPrincipalRssYoutube", ""
+			.Add "function listaMenuLeftVideos", "page"
+			.Add "function listaMenuLeftNoticias", "page"
+			.Add "function listaMenuLeftImagens", "page"
         End With
     End Function
 End Class
