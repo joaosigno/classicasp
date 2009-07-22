@@ -3,6 +3,8 @@
 	var videos = null;
 	var titulo = '';
 	var descricao = '';
+	var visualizacoes = '';
+	var avaliacoes = '';
 	var url = '';
 	var estrela0 = '';
 	var estrela1 = '';
@@ -20,6 +22,8 @@
 		titulo = obj.title;
 		descricao = obj.textDescription.substr(0, 170);
 		url = obj.link;
+		avaliacoes = obj.ratingsDescription;
+		visualizacoes = obj.viewsDescription;
 		estrela0 = obj.starsDescription[0];
 		estrela1 = obj.starsDescription[1];
 		estrela2 = obj.starsDescription[2];
@@ -47,8 +51,8 @@
 	{
 		float:left;
 		width:852px;
-		margin:10px 0 40px 0;
-		_margin:10px 0 40px 0 !important;
+		margin:10px 0 5px 0;
+		_margin:10px 0 5px 0 !important;
 	}
 
 	#boxVideos
@@ -108,7 +112,7 @@
 		_margin:0 0 0 -11px;
 	}
 
-	#titleVideos2
+	.titleVideos2
 	{
 		float:left;
 		width:169px;
@@ -138,9 +142,9 @@
 		_padding:5px 0;
 	}
 
-
-
 /*Player*/
+
+
 	#youtubePlayer
 	{
 		float:left;
@@ -165,7 +169,7 @@
 		float:right;
 		text-align:right;
 		width:280px;
-		margin-top:-121px;
+		margin-top:-80px;
 		_margin-top:0;
 	}
 
@@ -206,16 +210,21 @@
 	
 	#moreVideos
 	{
+		float:right;
+		_float:right;
+		width:570px;
 		height:25px;
 		_height:10px;
 		padding:8px;
 		display:block;
-		float:left;
 		width:290px;
+		text-align:right;
+		font:bold 10.5pt 'trebuchet ms'; 
+		color: #FFF;
 	}
 
 
-	#description2
+	.description2
 	{
 		float:left;
 		width:168px;
@@ -231,14 +240,16 @@
 
 	<div id="menu_center_right">
 		<div id="boxVideos">
-			<div id="youtubePlayer"></div>
+			<div id="youtubePlayer">
+				<img class="videoInProgress" src="_img/loadinfo.net.gif" />
+			</div>
 
 			<div id="ultimosVideos">
 				<div id="titleUltimosVideos"><img src="_img/bg_menu_item_videos_content.jpg" /></div>
 				<div id="listUltimosVideos">
-
+					<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 55% 40%;">
 				</div>
-				<div class="vejaMais border" onclick="">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+				<div id="linkVideos" class="vejaMais border" onclick="window.open(videos.rss[0].userUrl,'_blank');">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 			</div>
 		</div>
 	</div>

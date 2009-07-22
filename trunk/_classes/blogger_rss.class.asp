@@ -28,10 +28,13 @@ Class RssBlogger
 
 
     Public Function getOneRss(id)
+        Set r = new RSSLib
         Set conn = Session("objConn")
         sql = "select idRss,titulo,textoCurto,mediatipo,url from rss where idRss = " & id & " "
         Set rs = conn.execute(sql)
-        getOneRss = "{""rss"":" & toJSON(rs) &"}"
+        tmp2 = r.rssFromBlogger(rs("url"), "50")
+
+        getOneRss = "{""rss"":" & tmp2 &"}"
     End Function
 
 

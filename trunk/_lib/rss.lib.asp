@@ -55,13 +55,16 @@ Class RSSLib
 
 'Get RSS from Blogger
 	Public Function rssFromBlogger(strFeedUri, intMax)
-        output = ""
+		Dim au : au = strFeedUri
+		Dim usr : usr = "http://" & au & ".blogspot.com/"
+		Dim tmpaa : tmpaa = "http://" & au & ".blogspot.com/feeds/posts/default"
 
+        output = ""
 		Dim strTplHeader, strTplFooter, strTplItem
 
 		strTplHeader = "["
 		strTplFooter = "]"
-		strTplItem = "{""link"":""{LINK}"",""title"":""{TITLE}"",""description"":""{DESCRIPTION}""}"
+		strTplItem = "{""id"":""{ID}"",""userUrl"":""{USERURL}"",""link"":""{LINK}"",""title"":""{TITLE}"",""description"":""{DESCRIPTION}""}"
 
 		' ------- End variables
 
@@ -72,8 +75,6 @@ Class RSSLib
 		Dim strItemContent
 		Dim objChild
 
-		Dim tmpaa
-		tmpaa = "http://" & strFeedUri & ".blogspot.com/feeds/posts/default"
 		
 		If (InStr(tmpaa,"?alt=rss") = 0) Then 
 			tmpaa = tmpaa & "?alt=rss"
@@ -124,6 +125,8 @@ Class RSSLib
 				If j < Clng(intMax) Then
 					strItemContent = Replace(strTplItem, "{LINK}", strRsslink)
 					strItemContent = Replace(strItemContent, "{TITLE}", strRssTitle)
+					strItemContent = Replace(strItemContent, "{ID}", i)
+					strItemContent = Replace(strItemContent, "{USERURL}", usr)
 					strItemContent = Replace(strItemContent, "{DESCRIPTION}", Escape(strRssDesc))
 
 					output = output & (strItemContent)
@@ -262,8 +265,9 @@ Class RSSLib
 
 'Get RSS from Youtube
 	Public Function rssFromYouTube(theUser, intMax)
-		Dim strFeedUri : strFeedUri = "http://gdata.youtube.com/feeds/base/users/"& theUser &"/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile"
-
+		Dim au : au = theUser
+		Dim usr : usr = "http://www.youtube.com/user/" & au
+		Dim strFeedUri : strFeedUri = "http://gdata.youtube.com/feeds/base/users/"& au &"/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile"
         Dim output : output = ""
 		' ------- Configuration variables
 			' strContactEmail. Webmaster contact email
@@ -271,8 +275,7 @@ Class RSSLib
 			Dim strContactEmail, strErrMsg
 
 			strContactEmail = vbNullString
-			strErrMsg = "An error occurred while trying to process " & strFeedUri & ".<br />Please contact the " & _
-				"<a href=""mailto:" & strContactEmail & """>webmaster</a>."
+			strErrMsg = "An error occurred while trying to process " & strFeedUri & ".<br />Please contact the webmaster</a>."
 
 		' ------- Template variables:
 			' strTplHeader = HTML template header
@@ -285,7 +288,7 @@ Class RSSLib
 
 			strTplHeader = "["
 			strTplFooter = "]"
- 			strTplItem = "{""id"":""{ID}"",""link"":""{LINK}"",""title"":""{TITLE}"",""imgDescription"":""{imgDescription}""," &_
+ 			strTplItem = "{""id"":""{ID}"",""userUrl"":""{USERURL}"",""link"":""{LINK}"",""title"":""{TITLE}"",""imgDescription"":""{imgDescription}""," &_
  			             """timeDescription"":""{timeDescription}"",""textDescription"":""{textDescription}""," &_
  			             """viewsDescription"":""{viewsDescription}"",""ratingsDescription"":""{ratingsDescription}""," &_
  			             """starsDescription"":[""{starsDescription1}"",""{starsDescription2}"",""{starsDescription3}"",""{starsDescription4}"",""{starsDescription5}""]}"
@@ -382,8 +385,8 @@ Class RSSLib
 
 					strItemContent = Replace(strTplItem, "{LINK}", strRsslink)
 					strItemContent = Replace(strItemContent, "{ID}", i)
+					strItemContent = Replace(strItemContent, "{USERURL}", usr)
 					strItemContent = Replace(strItemContent, "{TITLE}", strRssTitle)
-
 					strItemContent = Replace(strItemContent, "{imgDescription}", tmpOut)
 					strItemContent = Replace(strItemContent, "{timeDescription}", tmpOutTime)
 					strItemContent = Replace(strItemContent, "{viewsDescription}", tmpOutViews)
@@ -469,15 +472,4 @@ Class RSSLib
 	end function
 
 End Class
-
-
-
-'//Flickr
-'http://api.flickr.com/services/feeds/photos_friends.gne?user_id=38549912@N07&friends=0&display_all=1&lang=pt-br&format=rss_200
-'http://api.flickr.com/services/feeds/photos_public.gne?id=38549912@N07&lang=pt-br&format=rss_200
-'//Youtube
-'http://gdata.youtube.com/feeds/base/"& theUser &"/Irategamer/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile
-'//Blogger
-'"http://"& theUser &".blogspot.com/feeds/posts/default?alt=rss"
-'http://kodomonotoki.blogspot.com/feeds/posts/default?alt=rss
 %>

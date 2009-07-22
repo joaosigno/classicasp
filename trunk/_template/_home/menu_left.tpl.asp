@@ -151,11 +151,22 @@
 			mjt.run('listImagens');
 		}
 
+
+		function pegarRssYoutube(id) {
+			_Index.listaRssYoutube(listVideos, id);
+		}
+
+		function pegarRssBlogger(id) {
+			_Index.listaRssBlogger(listNoticias, id);
+		}
+
+
 		window.onload = function() {
 			_Index.listaMenuLeftVideos(getMediaList, '0');
 			_Index.listaMenuLeftNoticias(getNoticiaList, '0');
 			_Index.listaMenuLeftImagens(getImagemList, '0');
 			_Index.listaPrincipalRssYoutube(listVideos);
+			_Index.listaPrincipalRssBlogger(listNoticias);
 		}
 	</script>
 
@@ -163,7 +174,7 @@
 
 <span id="listVideosRaw" style="display:none;visibility:hidden;">
 	<ul mjt.for="n in mediaList.rss">
-		<li class="list" mjt.onclick="pegarEsteRss(n.idrss)">
+		<li class="list" mjt.onclick="pegarRssYoutube(n.idrss)" style="cursor:pointer;">
 			${n.titulo}
 		</li>
 	</ul>
@@ -172,7 +183,7 @@
 
 <span id="listNoticiasRaw" style="display:none;visibility:hidden;">
 	<ul mjt.for="o in newsList.rss">
-		<li class="list" mjt.onclick="pegarEsteRss(o.idrss)">
+		<li class="list" mjt.onclick="pegarRssBlogger(o.idrss)" style="cursor:pointer;">
 			${o.titulo}
 		</li>
 	</ul>
@@ -181,7 +192,7 @@
 
 <span id="listImagensRaw" style="display:none;visibility:hidden;">
 	<ul mjt.for="p in imageList.rss">
-		<li class="list" mjt.onclick="pegarEsteRss(p.idrss)">
+		<li class="list" mjt.onclick="pegarEsteRss(p.idrss)" style="cursor:pointer;">
 			${p.titulo}
 		</li>
 	</ul>
@@ -192,8 +203,8 @@
 	<ul mjt.for="q in videos.rss">
 		<li class="list" mjt.onclick="videoOfList(q.id)">
 				${mjt.bless('&lt;img src="' + q.imgDescription + '" width="70" height="53" &gt;')}
-				<span id="titleVideos2">${mjt.bless(q.title)}</span>
-				<span id="description2">${mjt.bless(q.textDescription.substr(0,168))}</span>
+				<span class="titleVideos2">${mjt.bless(q.title)}</span>
+				<span class="description2">${mjt.bless(q.textDescription.substr(0,168))}</span>
 		</li>
 	</ul>
 </span>
@@ -209,11 +220,13 @@
 			<span id="descriptionVideo">
 				${mjt.bless(descricao)}
 			</span>
-			<span id="moreVideos">
-				[mais &gt;&gt;]
-			</span>
 		</span>
 		<span id="stars">${mjt.bless('&lt;img src="_img/stars/star_0_' + estrela0 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_1_' + estrela1 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_2_' + estrela2 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_3_' + estrela3 +'.png" &gt;')}${mjt.bless('&lt;img src="_img/stars/star_4_' + estrela4 +'.png" &gt;')}</span>
+		<span id="moreVideos">
+			${visualizacoes} visualizações
+			&nbsp;&nbsp;&nbsp;
+			${avaliacoes} avaliações
+		</span>
 	</div>
 </span>
 
