@@ -19,7 +19,6 @@
 	#box_news_images
 	{
 		float:left;
-		width:100%;
 	}
 
 
@@ -97,28 +96,27 @@
 		color:#555;
 	}
 	</style>
+
+
+
 <!--
 mjt.onclick="openNews(a.id)"
 -->
 
-	<span id="listUltimasNoticias3Raw" style="display:none;visibility:hidden;">
-		<ul mjt.for="a in news.rss">
-			<li class="list">
-				<div class="numberNews">${(parseInt(a.id)+1)}°</div>
-				<div class="titleNews">${a.title==''?'Sem titulo':a.title}</div>
-			</li>
-		</ul>
-	</span>
+
+
+
 
 	<div id="menu_center_right_2">
+
 		<div id="box_news_images">
 			<div id="ultimasNoticias3">
 				<div id="titleUltimasNoticias3"><img src="_img/bg_menu_item_noticias_content.jpg" /></div>
 				<div id="listUltimasNoticias3">
 					<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 20% 35%;" />
 				</div>
-				<div class="vejaMais border" onclick="window.open(news.rss[0].userUrl,'_blank');">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+				<div class="vejaMais border" onclick="window.open(news.rss[0].userUrl,'_blank');">veja mais notícias no Blog <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 			</div>
 		</div>
-	</div>
+
 

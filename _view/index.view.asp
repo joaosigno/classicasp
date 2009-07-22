@@ -29,7 +29,6 @@ Class Index
         listaPrincipalRssYoutube = Session("rssVideos")
     End Function
 
-
     Public Function listaPrincipalRssBlogger()
         recordsPerPage = "50"
         Set r = new RssBlogger
@@ -45,13 +44,27 @@ Class Index
         listaPrincipalRssBlogger = Session("rssNoticias")
     End Function
 
+    Public Function listaPrincipalRssFlickr()
+        recordsPerPage = "50"
+        Set r = new RssFlickr
+        Dim tmp2
+		If IsEmpty(Session("rssImagens")) Then
+			tmp2 = r.getPrincipalRssFeed(recordsPerPage)
+			Session("rssImagens") = tmp2
+		ElseIf DateDiff("n", Session("timeInit"), now) > 10 then
+			tmp2 = r.getPrincipalRssFeed(recordsPerPage)
+			Session("rssImagens") = tmp2
+			Session("timeInit") = now
+		End If
+        listaPrincipalRssFlickr = Session("rssImagens")
+    End Function
+
 
 	Public Function listaMenuLeftVideos(page)
         recordsPerPage = 10
         Set r = new RssYoutube
 		listaMenuLeftVideos = r.getMedias(page,recordsPerPage)
 	End Function
-
 
 	Public Function listaMenuLeftNoticias(page)
         recordsPerPage = 10
@@ -65,6 +78,7 @@ Class Index
 		listaMenuLeftImagens = r.getMedias(page,recordsPerPage)
 	End Function
 
+
 	Public Function listaRssYoutube(id)
         Set r = new RssYoutube
 		listaRssYoutube = r.getOneRss(id)
@@ -75,6 +89,10 @@ Class Index
 		listaRssBlogger = r.getOneRss(id)
 	End Function
 
+	Public Function listaRssFlickr(id)
+        Set r = new RssFlickr
+		listaRssFlickr = r.getOneRss(id)
+	End Function
 
 
     Public Function reflectMethod()
@@ -82,11 +100,13 @@ Class Index
         With reflectMethod
             .Add "function listaPrincipalRssYoutube", ""
             .Add "function listaPrincipalRssBlogger", ""
+            .Add "function listaPrincipalRssFlickr", ""
 			.Add "function listaMenuLeftVideos", "page"
 			.Add "function listaMenuLeftNoticias", "page"
 			.Add "function listaMenuLeftImagens", "page"
 			.Add "function listaRssYoutube", "id"
 			.Add "function listaRssBlogger", "id"
+			.Add "function listaRssFlickr", "id"
         End With
     End Function
 End Class
