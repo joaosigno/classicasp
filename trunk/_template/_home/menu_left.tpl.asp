@@ -1,6 +1,4 @@
-﻿
-	<style>
-
+﻿	<style>
 	#menu_left
 	{
 		float:left;
@@ -122,10 +120,6 @@
 		_margin:0 5px -1px 0;
 		padding:3px 12px 2px 0;
 	}
-	
-
-
-
 	</style>
 
 
@@ -160,6 +154,9 @@
 			_Index.listaRssBlogger(listNoticias, id);
 		}
 
+		function pegarRssFlickr(id) {
+			_Index.listaRssFlickr(listImagens, id);
+		}
 
 		window.onload = function() {
 			_Index.listaMenuLeftVideos(getMediaList, '0');
@@ -167,6 +164,7 @@
 			_Index.listaMenuLeftImagens(getImagemList, '0');
 			_Index.listaPrincipalRssYoutube(listVideos);
 			_Index.listaPrincipalRssBlogger(listNoticias);
+			_Index.listaPrincipalRssFlickr(listImagens);
 		}
 	</script>
 
@@ -192,7 +190,7 @@
 
 <span id="listImagensRaw" style="display:none;visibility:hidden;">
 	<ul mjt.for="p in imageList.rss">
-		<li class="list" mjt.onclick="pegarEsteRss(p.idrss)" style="cursor:pointer;">
+		<li class="list" mjt.onclick="pegarRssFlickr(p.idrss)" style="cursor:pointer;">
 			${p.titulo}
 		</li>
 	</ul>

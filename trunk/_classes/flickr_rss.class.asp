@@ -27,10 +27,13 @@ Class RssFlickr
     End Function
 
     Public Function getOneRss(id)
+        Set r = new RSSLib
         Set conn = Session("objConn")
         sql = "select idRss,titulo,textoCurto,mediatipo,url from rss  where idRss = " & id & " "
         Set rs = conn.execute(sql)
-        getOneRss = "{""rss"":" & toJSON(rs) &"}"
+        tmp2 = r.rssFromFlickr(rs("url"), "50")
+
+        getOneRss = "{""rss"":" & tmp2 &"}"
     End Function
 
 
@@ -39,8 +42,7 @@ Class RssFlickr
         Set conn = Session("objConn")
         sql = "select url from rss where principalFlickr = 1 "
         Set rs = conn.execute(sql)
-
-        tmp2 = r.rssFromBlogger(rs("url"), maxNews)
+        tmp2 = r.rssFromFlickr(rs("url"), maxNews)
 
         getPrincipalRssFeed = "{""rss"":" & tmp2 &"}"
     End Function
