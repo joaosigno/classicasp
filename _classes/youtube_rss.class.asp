@@ -14,10 +14,13 @@ Class RssYoutube
     End Function
 
     Public Function getOneRss(id)
+        Set r = new RSSLib
         Set conn = Session("objConn")
-        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss  where idRss = " & id & " "
+        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss  where mediaTipo='youtube' AND idRss = " & id & " "
         Set rs = conn.execute(sql)
-        getOneRss = "{""rss"":" & toJSON(rs) &"}"
+        tmp2 = r.rssFromYoutube(rs("url"), "50")
+
+        getOneRss = "{""rss"":" & tmp2 & rs("url") &"}"
     End Function
 
     Public Function getPrincipalRssFeed(maxNews)
