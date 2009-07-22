@@ -46,7 +46,7 @@
 
 </script>
 
-<style>
+<style type="text/css">
 	#menu_center_right
 	{
 		float:left;
@@ -249,7 +249,7 @@
 				<div id="listUltimosVideos">
 					<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 55% 40%;">
 				</div>
-				<div id="linkVideos" class="vejaMais border" onclick="window.open(videos.rss[0].userUrl,'_blank');">veja mais videos no Youtube <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+				<div id="linkVideos" class="vejaMais border" onclick="window.open(videos.rss[0].userUrl,'_blank');">veja mais videos <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 			</div>
 		</div>
 	</div>

@@ -10,6 +10,7 @@ Class Index
 			Session("timeInit") = now
 		End If
 
+		'Session.Abandon()
 		'Response.Write DateDiff("n", Session("timeInit"), now)
 	End Sub
 
