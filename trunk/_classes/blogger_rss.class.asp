@@ -30,23 +30,23 @@ Class RssBlogger
     Public Function getOneRss(id)
         Set r = new RSSLib
         Set conn = Session("objConn")
-        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss where idRss = " & id & " "
+        sql = "select url from rss where idRss = " & id & " AND mediaTipo='blogger' "
         Set rs = conn.execute(sql)
         tmp2 = r.rssFromBlogger(rs("url"), "50")
 
-        getOneRss = "{""rss"":" & tmp2 &"}"
+        getOneRss = "{""rss"":" & tmp2 & ",""idDB"":" & id & "}"
     End Function
 
 
     Public Function getPrincipalRssFeed(maxNews)
         Set r = new RSSLib
         Set conn = Session("objConn")
-        sql = "select url from rss where principalBlogger = 1 "
+        sql = "select url,idRss from rss where principalBlogger = 1 AND  mediaTipo='blogger' "
         Set rs = conn.execute(sql)
 
         tmp2 = r.rssFromBlogger(rs("url"), maxNews)
 
-        getPrincipalRssFeed = "{""rss"":" & tmp2 &"}"
+        getPrincipalRssFeed = "{""rss"":" & tmp2 &",""idDB"":" & rs("idRss") & "}"
     End Function
 
 
