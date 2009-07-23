@@ -19,7 +19,7 @@
 
 	<span id="listUltimasNoticias3Raw" style="display:none;visibility:hidden;">
 		<ul mjt.for="a in news.rss">
-			<li class="list">
+			<li class="list" mjt.onclick="document.location.replace('noticias.asp?id=' + news.idDB + '&idNews=' + a.id, true);">
 				<div class="numberNews">${(parseInt(a.id)+1)}°</div>
 				<div class="titleNews">${a.title==''?'Sem titulo':a.title}</div>
 			</li>
@@ -54,17 +54,20 @@
 
 		urlBlogImages = images.rss[0].userUrl;
 
+		$_('listUltimasImagens3').style.visibility = 'hidden';
 		$_('listUltimasImagens3').innerHTML = $_('listUltimasImagens3Raw').innerHTML;
 		mjt.run('listUltimasImagens3');
+		$_('listUltimasImagens3').style.visibility = 'visible';
 
 		firstImageOfList(images.rss[0], 'load');
 	}
 
 	function firstImageOfList(obj) {
 		imageAtLoad = obj;
-
+		$_('imagemPrincipal').style.visibility = 'hidden';
 		$_('imagemPrincipal').innerHTML = $_('imagemPrincipalRaw').innerHTML;
 		mjt.run('imagemPrincipal');
+		$_('imagemPrincipal').style.visibility = 'visible';
 	}
 
 	function imageOfList(id) {
@@ -77,6 +80,7 @@
 	{
 		float:left;
 	}
+	
 
 	#ultimasImagens3
 	{
@@ -152,7 +156,7 @@
 	{
 		float:left;
 		width:315px;
-		margin:3px;
+		margin:3px 3px 0 3px;
 		font-family:'trebuchet ms';
 		font-size:10.5pt;
 		color:#555;
@@ -161,11 +165,15 @@
 	.descriptionOfImage
 	{
 		float:left;
-		width:315px;
+		width:296px;
+		_width:315px;
+		height:87px;
+		_height:93px;
 		margin:3px;
 		padding:5px;
 		font-family:'trebuchet ms';
 		font-size:10.5pt;
 		color:#444;
+		overflow:auto;
 	}
 	</style>

@@ -231,7 +231,7 @@ body:nth-of-type(1) #banner
 
 	<div id="menu_top">
 		<span id="top_items">
-			<img id="bg_menu_top_home" src="_img/bg_menu_top_home.jpg" />
+			<img id="bg_menu_top_home" src="_img/bg_menu_top_home.jpg" onclick="document.location.replace('./',true);" />
 			<img id="bg_menu_top_grupo" src="_img/bg_menu_top_grupo.jpg" />
 			<img id="bg_menu_top_noticias" src="_img/bg_menu_top_noticias.jpg" />
 			<img id="bg_menu_top_imagens" src="_img/bg_menu_top_imagens.jpg" />
