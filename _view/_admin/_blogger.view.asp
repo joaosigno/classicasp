@@ -1,4 +1,5 @@
-﻿<!-- #include file="./../../_classes/noticias.class.asp" -->
+﻿<!-- #include file="./../../_lib/pagecounter.lib.asp" -->
+<!-- #include file="./../../_lib/rss.lib.asp" -->
 <!-- #include file="./../../_classes/blogger_rss.class.asp" -->
 <%
 Class Start
@@ -27,7 +28,7 @@ Class Start
 		If id = "0" Then
 			res = n.getRss(page,recordsPerPage)
 		Else
-			res = n.getOneRss(id)
+			res = n.getOneRssToUpdate(id)
 		End If
 		readRss = res
     End Function

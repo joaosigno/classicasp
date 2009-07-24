@@ -109,6 +109,6 @@
 				<div id="listUltimasNoticias3">
 					<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 20% 35%;" />
 				</div>
-				<div class="vejaMais border" onclick="window.open(news.rss[0].userUrl,'_blank');">veja mais notícias <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+				<div class="vejaMais border" onclick="window.open(news.rss[0].userUrl,'_blank');">mais notícias do mesmo no Blog <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 			</div>
 		</div>

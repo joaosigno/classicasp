@@ -51,7 +51,7 @@ Class Index
 	End Function
 
 	Public Function listaMenuLeftNoticias(page)
-        recordsPerPage = 2
+        recordsPerPage = 100
         Set r = new RssBlogger
 		listaMenuLeftNoticias = r.getMedias(page,recordsPerPage)
 	End Function

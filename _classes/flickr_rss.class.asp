@@ -6,9 +6,9 @@ Class RssFlickr
         Set rs2 = conn.execute(sqlCount)
 
         totPages = toCount(rs2("tot"),quantity)
-        page = page * quantity
+        pgTMP = page * quantity
 
-        sql = "select idRss,titulo,textoCurto,mediatipo,principalFlickr,url from rss where mediaTipo='flickr' order by principalFlickr DESC,idRss DESC Limit " & page & "," & quantity & ""
+        sql = "select idRss,titulo,textoCurto,mediatipo,principalFlickr,url from rss where mediaTipo='flickr' order by principalFlickr DESC,idRss DESC Limit " & pgTMP & "," & quantity & ""
         Set rs = conn.execute(sql)
         getMedias = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
     End Function
@@ -19,11 +19,19 @@ Class RssFlickr
         Set rs2 = conn.execute(sqlCount)
 
         totPages = toCount(rs2("tot"),quantity)
-        page = page * quantity
+        pgTMP = page * quantity
 
-        sql = "select idRss,titulo,textoCurto,mediatipo,principalFlickr,url from rss where mediaTipo='flickr' order by principalFlickr DESC,idRss DESC Limit " & page & "," & quantity & ""
+        sql = "select idRss,titulo,textoCurto,mediatipo,principalFlickr,url from rss where mediaTipo='flickr' order by principalFlickr DESC,idRss DESC Limit " & pgTMP & "," & quantity & ""
         Set rs = conn.execute(sql)
         getRss = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
+    End Function
+
+    Public Function getOneRssToUpdate(id)
+        Set conn = Session("objConn")
+        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss  where idRss = " & id & " "
+        Set rs = conn.execute(sql)
+
+        getOneRssToUpdate = "{""rss"":" & toJSON(rs) &"}"
     End Function
 
     Public Function getOneRss(id)
