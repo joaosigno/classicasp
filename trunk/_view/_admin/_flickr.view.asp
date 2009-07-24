@@ -20,7 +20,7 @@ Class Start
 		If id = "0" Then
 			res = n.getRss(page,recordsPerPage)
 		Else
-			res = n.getOneRss(id)
+			res = n.getOneRssToUpdate(id)
 		End If
 		readRss = res
     End Function

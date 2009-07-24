@@ -246,7 +246,7 @@
 			<div id="listNoticias">
 				<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 20% 35%;" />
 			</div>
-			<div class="vejaMais" onclick="">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+			<div class="vejaMais" onclick="document.location.replace('noticias.asp', true);">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 		</div>
 
 		<div id="imagens">

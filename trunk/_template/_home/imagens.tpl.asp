@@ -8,7 +8,7 @@
 				</div>
 
 				<div class="vejaMais border" onclick="window.open(urlBlogImages,'_blank');" style="border-left:none;border-right:none;">
-					veja mais imagens <img src="_img/bg_arrow_veja_mais.jpg" />
+					mais imagens do mesmo no Flickr <img src="_img/bg_arrow_veja_mais.jpg" />
 				</div>
 			</div>
 		</div>

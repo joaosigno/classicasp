@@ -6,9 +6,9 @@ Class RssYoutube
         Set rs2 = conn.execute(sqlCount)
 
         totPages = toCount(rs2("tot"),quantity)
-        page = page * quantity
+        pgTMP = page * quantity
 
-        sql = "select idRss,titulo,textoCurto,mediatipo,principalYoutube,url from rss where mediaTipo='youtube' order by principalYoutube DESC,idRss DESC Limit " & page & "," & quantity & ""
+        sql = "select idRss,titulo,textoCurto,mediatipo,principalYoutube,url from rss where mediaTipo='youtube' order by principalYoutube DESC,idRss DESC Limit " & pgTMP & "," & quantity & ""
         Set rs = conn.execute(sql)
         getMedias = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
     End Function

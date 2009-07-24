@@ -6,9 +6,9 @@ Class RssBlogger
         Set rs2 = conn.execute(sqlCount)
 
         totPages = toCount(rs2("tot"),quantity)
-        page = page * quantity
+        pgTMP = page * quantity
 
-        sql = "select idRss,titulo,textoCurto,mediatipo,principalBlogger,url from rss where mediaTipo='blogger' order by principalBlogger DESC,idRss DESC Limit " & page & "," & quantity & ""
+        sql = "select idRss,titulo,textoCurto,mediatipo,principalBlogger,url from rss where mediaTipo='blogger' order by principalBlogger DESC,idRss DESC Limit " & pgTMP & "," & quantity & ""
         Set rs = conn.execute(sql)
         getMedias = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
     End Function
@@ -19,9 +19,9 @@ Class RssBlogger
         Set rs2 = conn.execute(sqlCount)
 
         totPages = toCount(rs2("tot"),quantity)
-        page = page * quantity
+        pgTMP = page * quantity
 
-        sql = "select idRss,titulo,textoCurto,mediatipo,principalBlogger,url from rss where mediaTipo='blogger' order by principalBlogger DESC,idRss DESC Limit " & page & "," & quantity & ""
+        sql = "select idRss,titulo,textoCurto,mediatipo,principalBlogger,url from rss where mediaTipo='blogger' order by principalBlogger DESC,idRss DESC Limit " & pgTMP & "," & quantity & ""
         Set rs = conn.execute(sql)
         getRss = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
     End Function
@@ -30,11 +30,21 @@ Class RssBlogger
     Public Function getOneRss(id)
         Set r = new RSSLib
         Set conn = Session("objConn")
-        sql = "select url from rss where idRss = " & id & " AND mediaTipo='blogger' "
+        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss where idRss = " & id & " AND mediaTipo='blogger' "
         Set rs = conn.execute(sql)
         tmp2 = r.rssFromBlogger(rs("url"), "50")
 
         getOneRss = "{""rss"":" & tmp2 & ",""idDB"":" & id & "}"
+    End Function
+
+
+
+    Public Function getOneRssToUpdate(id)
+        Set conn = Session("objConn")
+        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss where idRss = " & id & " AND mediaTipo='blogger' "
+        Set rs = conn.execute(sql)
+
+        getOneRssToUpdate = "{""rss"":" & toJSON(rs) & ",""idDB"":" & id & "}"
     End Function
 
 

@@ -104,7 +104,7 @@
 	
 	.vejaMais
 	{
-		width:150px;
+		width:100%;
 		height:22px;
 		color:#F00;
 		font-size:9pt;
@@ -121,10 +121,7 @@
 		_margin:0 5px -1px 0;
 		padding:3px 12px 2px 0;
 	}	
-</style>
 
-
-<style type="text/css">
 	#menu_center_right_2
 	{
 		float:left;
@@ -243,8 +240,27 @@
 		padding:10px;
 		overflow:auto;
 	}
-	</style>
+	
+	.titleN
+	{
+		font-family:'trebuchet ms';
+		font-weight: bold;
+		font-size:10.5pt;
+		color:#777;
+	}
 
+
+	.border
+	{
+		float:left;
+		background-image:url('./_img/dot_gray.jpg');
+		border-left:solid 1px #CCC;
+		border-right:solid 1px #CCC;
+		border-bottom:solid 1px #CCC;
+		padding:3px 0 -3px 0;
+		_padding:5px 0;
+	}
+	</style>
 
 <script type="text/javascript">
 	var news = null;
@@ -258,7 +274,9 @@
 		$_('listUltimasNoticias3').style.visibility = 'visible';
 		mjt.run('listUltimasNoticias3');
 
-		firstNewsOfList(news.rss[0]);
+		<%Dim idNews : idNews = Request.QueryString("idNews")%>
+		<%If IsEmpty(idNews) or idNews = "" Then idNews = 0 End If%>
+		firstNewsOfList(news.rss[<%=idNews%>]);
 	}
 
 
@@ -268,12 +286,14 @@
 		$_('noticias').style.visibility = 'hidden';
 		$_('listNoticias').innerHTML = $_('listNoticiasRaw').innerHTML;
         $_('pages').innerHTML = $_('pagesraw').innerHTML;
-        $_('pages2').innerHTML = $_('pagesraw').innerHTML;
 		mjt.run('listNoticias');
 		mjt.run('pages');
-		mjt.run('pages2');
 		$_('noticias').style.visibility = 'visible';
 
+	}
+
+	function pegaNoticia(id){
+		firstNewsOfList(news.rss[id]);
 	}
 
 
@@ -303,12 +323,9 @@
 	}
 </script>
 
-
-
-
 	<span id="listUltimasNoticias3Raw" style="display:none;visibility:hidden;">
 		<ul mjt.for="a in news.rss">
-			<li class="list" mjt.onclick="document.location.replace('noticias.asp?id=' + news.idDB, true);">
+			<li class="list" mjt.onclick="pegaNoticia(a.id);">
 				<div class="numberNews">${(parseInt(a.id)+1)}°</div>
 				<div class="titleNews">${a.title==''?'Sem titulo':a.title}</div>
 			</li>
@@ -326,8 +343,9 @@
 
 
 	<div id="pagesraw" style="display:none;">
-		<span mjt.def="mklink(n)"><span class="num" mjt.onclick="_Index.listaMenuLeftNoticias(getNoticiaList, n);">$n</span></span>
-		<span  mjt.for="(x = 0; x < newsList.pages; x++)">${newsList.pages== 1?'':mklink(x)} </span>
+		${newsList.pages==1?'':'Páginas'}
+		<span mjt.def="mklink(n)"><span class="num" mjt.onclick="_Index.listaMenuLeftNoticias(getNoticiaList, n);">${parseInt(n+1)}</span></span>
+		<span  mjt.for="(x = 0; x < newsList.pages; x++)">${newsList.pages== 1?'':(newsList.actualPage==x?x+1:mklink(x))} </span>
 	</div>
 
 	<div id="noticiaRaw" style="display:none;visibility:hidden;">
@@ -340,12 +358,10 @@
 	<div id="menu_center_right_2">
 		<div id="noticias">
 			<div id="titleNoticias"><img src="_img/bg_menu_item_skull.jpg" /></div>
-			<div class="vejaMais"><div id="pages"></div></div>
 			<div id="listNoticias">
 				<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 20% 35%;" />
 			</div>
-			<div class="vejaMais"><div id="pages2"></div></div>
-			
+			<div class="vejaMais"><div id="pages"></div></div>
 		</div>
 
 		<div id="noticia"></div>
@@ -357,7 +373,7 @@
 				<div id="listUltimasNoticias3">
 					<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 20% 35%;" />
 				</div>
-				<div class="vejaMais border" onclick="window.open(news.rss[0].userUrl,'_blank');">veja mais notícias <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+				<div class="vejaMais border" onclick="window.open(news.rss[0].userUrl,'_blank');">veja mais notícias no Blog <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 			</div>
 		</div>
 	</div>
