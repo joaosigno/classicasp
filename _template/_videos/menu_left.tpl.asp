@@ -1,4 +1,6 @@
-﻿	<style>
+﻿
+	<style>
+
 	#menu_left
 	{
 		float:left;
@@ -120,6 +122,10 @@
 		_margin:0 5px -1px 0;
 		padding:3px 12px 2px 0;
 	}
+	
+
+
+
 	</style>
 
 
@@ -154,9 +160,6 @@
 			_Index.listaRssBlogger(listNoticias, id);
 		}
 
-		function pegarRssFlickr(id) {
-			_Index.listaRssFlickr(listImagens, id);
-		}
 
 		window.onload = function() {
 			_Index.listaMenuLeftVideos(getMediaList, '0');
@@ -164,7 +167,6 @@
 			_Index.listaMenuLeftImagens(getImagemList, '0');
 			_Index.listaPrincipalRssYoutube(listVideos);
 			_Index.listaPrincipalRssBlogger(listNoticias);
-			_Index.listaPrincipalRssFlickr(listImagens);
 		}
 	</script>
 
@@ -190,7 +192,7 @@
 
 <span id="listImagensRaw" style="display:none;visibility:hidden;">
 	<ul mjt.for="p in imageList.rss">
-		<li class="list" mjt.onclick="pegarRssFlickr(p.idrss)" style="cursor:pointer;">
+		<li class="list" mjt.onclick="pegarEsteRss(p.idrss)" style="cursor:pointer;">
 			${p.titulo}
 		</li>
 	</ul>
@@ -230,15 +232,15 @@
 
 
 	<div id="menu_left" style="background-color:#FFF;">
-		<div id="diario" onclick="document.location.replace('./diario.asp',true);">&nbsp;</div>
-		<div id="grupo" onclick="document.location.href.replace('./grupo.asp',true);"><img src="_img/bg_menu_top_grupo.jpg" /></div>
+		<div id="diario">&nbsp;</div>
+		<div id="grupo" onclick="document.location.href.replace('#',true);"><img src="_img/bg_menu_top_grupo.jpg" /></div>
 
 		<div id="videos">
 			<div id="titleVideos"><img src="_img/bg_menu_item_skull.jpg" /></div>
 			<div id="listVideos">
 				<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 20% 35%;" />
 			</div>
-			<div class="vejaMais" onclick="document.location.replace('./videos.asp',true);">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+			<div class="vejaMais" onclick="">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 		</div>
 
 		<div id="noticias">
@@ -246,7 +248,7 @@
 			<div id="listNoticias">
 				<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 20% 35%;" />
 			</div>
-			<div class="vejaMais" onclick="document.location.replace('noticias.asp', true);">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+			<div class="vejaMais" onclick="">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 		</div>
 
 		<div id="imagens">
@@ -254,7 +256,7 @@
 			<div id="listImagens">
 				<img class="videoInProgress" src="_img/loadinfo.net.gif" style="margin: 20% 35%;" />
 			</div>
-			<div class="vejaMais" onclick="document.location.replace('./iamgens.asp',true);">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
+			<div class="vejaMais" onclick="">veja mais <img src="_img/bg_arrow_veja_mais.jpg" /></div>
 		</div>
 	</div>
 
