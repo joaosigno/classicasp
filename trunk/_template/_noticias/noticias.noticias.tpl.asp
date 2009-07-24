@@ -1,5 +1,4 @@
-﻿
-<style>
+﻿<style type="text/css">
 	#menu_left
 	{
 		float:left;
@@ -263,6 +262,9 @@
 	</style>
 
 <script type="text/javascript">
+	<%Dim idNews : idNews = Request.QueryString("idNews")%>
+	<%If IsEmpty(idNews) or idNews = "" Then idNews = 0 End If%>
+	var idNews = <%=idNews%>;
 	var news = null;
 	var newsAtLoad = null;
 
@@ -274,12 +276,8 @@
 		$_('listUltimasNoticias3').style.visibility = 'visible';
 		mjt.run('listUltimasNoticias3');
 
-		<%Dim idNews : idNews = Request.QueryString("idNews")%>
-		<%If IsEmpty(idNews) or idNews = "" Then idNews = 0 End If%>
-		firstNewsOfList(news.rss[<%=idNews%>]);
+		firstNewsOfList(news.rss[idNews]);
 	}
-
-
 
 	function getNoticiaList(callBack) {
 		newsList = JSON.parse(callBack);
@@ -296,7 +294,6 @@
 		firstNewsOfList(news.rss[id]);
 	}
 
-
 	function firstNewsOfList(obj) {
 		newsAtLoad = obj;
 		$_('noticia').style.visibility = 'hidden';
@@ -305,21 +302,20 @@
 		$_('noticia').style.visibility = 'visible';
 	}
 
-
-
-
 	function pegarRssBlogger(id) {
+		idNews = '0';
 		_Index.listaRssBlogger(listNoticias, id);
 	}
 
 
 	window.onload = function() {
 		_Index.listaMenuLeftNoticias(getNoticiaList, '0');
-	<%If Not IsEmpty(Request.QueryString("id")) AND Request.QueryString("id") <> "" Then%>
+		<%If Not IsEmpty(Request.QueryString("id")) AND Request.QueryString("id") <> "" Then%>
 		_Index.listaRssBlogger(listNoticias, '<%=Request.QueryString("id")%>');
-	<%Else%>
+		<%Else%>
+		idNews = 0;
 		_Index.listaPrincipalRssBlogger(listNoticias);
-	<%End If%>
+		<%End If%>
 	}
 </script>
 
@@ -365,7 +361,6 @@
 		</div>
 
 		<div id="noticia"></div>
-
 
 		<div id="box_news_images">
 			<div id="ultimasNoticias3">
