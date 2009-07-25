@@ -37,7 +37,7 @@ Class RssFlickr
     Public Function getOneRss(id)
         Set r = new RSSLib
         Set conn = Session("objConn")
-        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss  where idRss = " & id & " "
+        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss  where idRss = " & id & " AND  mediaTipo='flickr' "
         Set rs = conn.execute(sql)
         tmp2 = r.rssFromFlickr(rs("url"), "50")
 

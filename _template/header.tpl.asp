@@ -234,7 +234,7 @@ body:nth-of-type(1) #banner
 			<img id="bg_menu_top_home" src="_img/bg_menu_top_home.jpg" onclick="document.location.replace('./',true);" />
 			<img id="bg_menu_top_grupo" src="_img/bg_menu_top_grupo.jpg" onclick="document.location.replace('./grupo.asp',true);" />
 			<img id="bg_menu_top_noticias" src="_img/bg_menu_top_noticias.jpg" onclick="document.location.replace('./noticias.asp',true);" />
-			<img id="bg_menu_top_imagens" src="_img/bg_menu_top_imagens.jpg" onclick="document.location.replace('./iamgens.asp',true);" />
+			<img id="bg_menu_top_imagens" src="_img/bg_menu_top_imagens.jpg" onclick="document.location.replace('./imagens.asp',true);" />
 			<img id="bg_menu_top_videos" src="_img/bg_menu_top_videos.jpg" onclick="document.location.replace('./videos.asp',true);" />
 			<img id="bg_menu_top_diario" src="_img/bg_menu_top_diario.jpg" onclick="document.location.replace('./diario.asp',true);" />
 			<img id="bg_menu_top_contato" src="_img/bg_menu_top_contato.jpg" onclick="document.location.replace('./contato.asp',true);" />
