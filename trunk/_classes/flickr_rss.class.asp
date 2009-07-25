@@ -26,6 +26,20 @@ Class RssFlickr
         getRss = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
     End Function
 
+    Public Function getRssElenco(page,quantity)
+        Set conn = Session("objConn")
+        sqlCount = "select count(idRss) as tot from rss where mediaTipo='FlickrElenco' "
+        Set rs2 = conn.execute(sqlCount)
+
+        totPages = toCount(rs2("tot"),quantity)
+        pgTMP = page * quantity
+
+        sql = "select idRss,titulo,textoCurto,mediatipo,principalElenco,url from rss where mediaTipo='FlickrElenco' order by principalElenco DESC,idRss DESC Limit " & pgTMP & "," & quantity & ""
+        Set rs = conn.execute(sql)
+        getRssElenco = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
+    End Function
+
+
     Public Function getOneRssToUpdate(id)
         Set conn = Session("objConn")
         sql = "select idRss,titulo,textoCurto,mediatipo,url from rss  where idRss = " & id & " "
@@ -44,6 +58,16 @@ Class RssFlickr
         getOneRss = "{""rss"":" & tmp2 &"}"
     End Function
 
+    Public Function getOneRssElenco(id)
+        Set r = new RSSLib
+        Set conn = Session("objConn")
+        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss  where idRss = " & id & " AND  mediaTipo='FlickrElenco' "
+        Set rs = conn.execute(sql)
+        tmp2 = r.rssFromFlickr(rs("url"), "50")
+
+        getOneRssElenco = "{""rss"":" & tmp2 &"}"
+    End Function
+
 
     Public Function getPrincipalRssFeed(maxNews)
         Set r = new RSSLib
@@ -55,6 +79,16 @@ Class RssFlickr
         getPrincipalRssFeed = "{""rss"":" & tmp2 &"}"
     End Function
 
+
+    Public Function getPrincipalRssFeedElenco(maxNews)
+        Set r = new RSSLib
+        Set conn = Session("objConn")
+        sql = "select url from rss where principalElenco = 1 "
+        Set rs = conn.execute(sql)
+        tmp2 = r.rssFromFlickr(rs("url"), maxNews)
+
+        getPrincipalRssFeedElenco = "{""rss"":" & tmp2 &"}"
+    End Function
 
     Public Function toInsertRss(titulo,textoCurto,mediaTipo,url)
         Set n = new RSSLib
@@ -107,6 +141,28 @@ Class RssFlickr
 		End If
 
 		setPrincipal = "{""error"":""" & strError & """}"
+	End Function
+
+
+    Public Function setPrincipalElenco(id)
+		On Error resume next
+		Set conn = Session("objConn")
+		sql_ = "update rss set " &_
+			   "principalElenco=0 "
+		conn.execute(sql_)
+
+		sql_ = "update rss set " &_
+			   "principalElenco=1 " &_
+			   "where idRss="& id
+		conn.execute(sql_)
+
+		Dim strError
+		strError = ""
+		If Err.number <> 0 Then
+			strError = Err.Description
+		End If
+
+		setPrincipalElenco = "{""error"":""" & strError & """}"
 	End Function
 
 

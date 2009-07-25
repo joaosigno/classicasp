@@ -18,7 +18,7 @@ Class Start
         recordsPerPage = "5"
         Set n = new RSSFlickr
 		If id = "0" Then
-			res = n.getRss(page,recordsPerPage)
+			res = n.getRssElenco(page,recordsPerPage)
 		Else
 			res = n.getOneRssToUpdate(id)
 		End If
@@ -28,13 +28,13 @@ Class Start
 
 	Public Function setPrincipal(id)
         Set r = new RSSFlickr
-		setPrincipal = r.setPrincipal(id)
+		setPrincipal = r.setPrincipalElenco(id)
 	End Function
 
 
     Public Function deleteRSS(id)
         Set r = new RSSFlickr
-        deleteRSS = r.toDeleteRss (id)
+        deleteRSS = r.toDeleteRss(id)
     End Function
 
 
@@ -52,7 +52,7 @@ End Class
 
 
 If request.QueryString("m") = "" Then
-    path = "./../_view/_admin/_flickr.view.asp"
+    path = "./../_view/_admin/_elenco.view.asp"
     writeMethodsToJson "start", path
 End If
 %>

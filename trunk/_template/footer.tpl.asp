@@ -9,7 +9,7 @@
 				<a class="quickLink" href="javascript:void(0);" onclick="document.location.replace('./videos.asp', true);">vídeos</a> | 
 				<a class="quickLink" href="javascript:void(0);" onclick="document.location.replace('./noticias.asp',true);">notícias</a> | 
 				<a class="quickLink" href="javascript:void(0);" onclick="document.location.replace('./imagens.asp',true);">imagens</a> | 
-				<a class="quickLink" href="javascript:void(0);" onclick="document.location.replace('./diario.asp',true);">diário de bordo</a> | 
+				<a class="quickLink" href="javascript:void(0);" onclick="window.open('http:///diario.blogspot.com','_blank');">diário de bordo</a> | 
 				<a class="quickLink" href="javascript:void(0);" onclick="document.location.replace('./contato.asp',true);">contato</a>
 			</div>
 
