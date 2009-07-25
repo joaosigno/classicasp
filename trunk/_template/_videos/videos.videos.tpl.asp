@@ -386,7 +386,7 @@
 
 
 <script type="text/javascript">
-	<%Dim idVideo : idNews = Request.QueryString("idVideo")%>
+	<%Dim idVideo : idVideo = Request.QueryString("idVideo")%>
 	<%If IsEmpty(idVideo) or idVideo = "" Then idVideo = 0 End If%>
 	var idVideo = '<%=idVideo%>';
 	var videos = null;

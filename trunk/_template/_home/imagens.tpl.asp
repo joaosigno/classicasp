@@ -28,7 +28,7 @@
 
 
 	<span id="imagemPrincipalRaw" style="display:none;visibility:hidden;">
-		${mjt.bless('&lt;img class="imagesFlickrPrincipal"  alt="' + imageAtLoad.title + '"  src="' + imageAtLoad.imageSmall + '" width="270" height="203" /&gt;')}
+		<span mjt.onclick="window.open(imageAtLoad.image,'_blank');" style="cursor:pointer;">${mjt.bless('&lt;img class="imagesFlickrPrincipal"  alt="' + imageAtLoad.title + '"  src="' + imageAtLoad.imageSmall + '" width="270" height="203" /&gt;')}</span>
 		<span class="titleOfImage">${imageAtLoad.title}</span>
 		<span class="descriptionOfImage">${mjt.bless(imageAtLoad.description)}</span>
 	</span>

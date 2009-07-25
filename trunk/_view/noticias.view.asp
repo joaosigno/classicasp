@@ -24,6 +24,7 @@ Class Index
 			Session("rssNoticias") = tmp2
 			Session("timeInit") = now
 		End If
+
         listaPrincipalRssBlogger = Session("rssNoticias")
     End Function
 
@@ -31,10 +32,6 @@ Class Index
 	Public Function listaRssBlogger(id)
 		Dim theID : theID = id
 		Dim tmp2 : tmp2 = ""
-
-		If IsEmpty(Session("lastID")) Then
-			Session("lastID") = theID
-		End if
 
         Set r = new RssBlogger
 		If IsEmpty(Session("rssNoticias")) or Session("lastID") <> id Then
@@ -46,6 +43,10 @@ Class Index
 			Session("rssNoticias") = tmp2
 			Session("timeInit") = now
 		End If
+
+		If IsEmpty(Session("lastID")) Then
+			Session("lastID") = theID
+		End if
 
 		listaRssBlogger = Session("rssNoticias")
 	End Function
