@@ -220,7 +220,7 @@ body:nth-of-type(1) #banner
 
 	<div id="topo">
 		<div id="banner">
-			<div id="title_left"></div>
+			<div id="title_left" onclick="document.location.replace('./',true);" ></div>
 			<div id="header_center"></div>
 			<img src="_img/header_right_big.jpg" />
 		</div>
