@@ -15,7 +15,7 @@
 
 
 			<div id="logoSeres">
-				<a class="quickLink" href="javascript:void(0);"><img src="_img/os_seres_small.jpg" border="0" /></a>
+				<a class="quickLink" href="javascript:void(0);" onclick="document.location.replace('./',true);" ><img src="_img/os_seres_small.jpg" border="0" /></a>
 				<br />
 				<br />
 				<br />
