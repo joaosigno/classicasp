@@ -281,7 +281,7 @@
 		_height:10px;
 		padding:8px;
 		margin-top:-92px;
-		margin-top:10px;
+		_margin-top:10px;
 		display:block;
 		width:280px;
 		text-align:right;

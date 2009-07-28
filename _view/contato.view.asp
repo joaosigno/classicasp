@@ -13,7 +13,7 @@ Class Index
 
     Public Function enviarEmail_(remetente,msg)
 		Set e = new Email
-		assunto = "Contato"
+		assunto = "[Grupo OS SERES] - Contato do site."
         enviarEmail_ = e.sendMail (remetente,assunto,msg)
     End Function
 
