@@ -2,6 +2,7 @@
 
 <!-- START FOOTER -->
 
+
 	<div id="footer">
 		<div id="boxfooter">
 			<div id="seres">
@@ -20,7 +21,7 @@
 				<br />
 				<br />
 				<br />
-				<a class="quickLink" href="javascript:void(0);"><img src="_img/designer_marcos.jpg" border="0" /></a>
+				<a class="quickLink" href="javascript:void(0);" onclick="document.location.href('mailto:designermarcos@gmail.com&cc=p.roberto.rodrigues@gmail.com&subject=Websites');"><img src="_img/designer_marcos.jpg" border="0" /></a>
 			</div>
 		</div>
 	</div>
@@ -32,3 +33,4 @@
 </body>
 </html>
 <!-- END FOOTER -->
+
