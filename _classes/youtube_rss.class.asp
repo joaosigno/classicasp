@@ -13,6 +13,16 @@ Class RssYoutube
         getMedias = "{""rss"":" & toJSON(rs) &",""pages"":"& totPages &",""actualPage"":"& page &"}"
     End Function
 
+    Public Function getOneMedia(id)
+        Set r = new RSSLib
+        Set conn = Session("objConn")
+        sql = "select idRss,titulo,textoCurto,mediatipo,url from rss  where mediaTipo='youtube' AND idRss = " & id & " "
+        Set rs = conn.execute(sql)
+
+        getOneMedia = "{""rss"":" & toJSON(rs) & "}"
+    End Function
+
+
     Public Function getOneRss(id)
         Set r = new RSSLib
         Set conn = Session("objConn")
