@@ -28,7 +28,7 @@ Class Start
 		If id = "0" Then
 			res = n.getMedias(page,recordsPerPage)
 		Else
-			res = n.getOneRss(id)
+			res = n.getOneMedia(id)
 		End If
 		readRss = res
     End Function
