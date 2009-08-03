@@ -135,11 +135,14 @@
 	var imageList = null;
 	var imageAtLoad = null;
 	var nImages = 0;
+	var urlBlogImages = '';
 
 
 
 	function listImagens(callBack) {
 		images = JSON.parse(callBack);
+
+		urlBlogImages = images.rss[0].userUrl;
 
 		$_('listUltimasImagens3').style.visibility = 'hidden';
 		$_('listUltimasImagens3').innerHTML = $_('listUltimasImagens3Raw').innerHTML;

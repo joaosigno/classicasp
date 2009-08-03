@@ -6,7 +6,7 @@ Class Email
 		Mailer.RemoteHost = "mail.seresteatro.com.br"
 		Mailer.FromName = remetente
 		Mailer.FromAddress = remetente
-		Mailer.AddRecipient "[Elenco - OS SERES]", "p.roberto.rodrigues@gmail.com"
+		Mailer.AddRecipient "[Elenco - OS SERES]", "elencoseres@yahoo.com.br"
 		Mailer.Subject = assunto
 
 		Mailer.BodyText = msg
