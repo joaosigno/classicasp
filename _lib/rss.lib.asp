@@ -111,11 +111,11 @@ Class RSSLib
 				For Each objChild in objRSSItem.childNodes
 					Select Case LCase(objChild.nodeName)
 						Case "link"
-							strRsslink = objChild.text
+							strRsslink = Replace(objChild.text,"""","'")
 						Case "title"
-							strRssTitle = objChild.text
+							strRssTitle = Replace(objChild.text,"""","'")
 						Case "description"
-							strRssDesc = objChild.text
+							strRssDesc = Replace(objChild.text,"""","'")
 					End Select
 				Next
  
