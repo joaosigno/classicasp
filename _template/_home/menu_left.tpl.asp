@@ -230,7 +230,7 @@
 
 
 	<div id="menu_left" style="background-color:#FFF;">
-		<div id="diario" onclick="window.open('http:///diario.blogspot.com','_blank');">&nbsp;</div>
+		<div id="diario" onclick="window.open('http:///diarioseres.blogspot.com','_blank');">&nbsp;</div>
 		<div id="grupo" onclick="document.location.replace('./grupo.asp',true);"><img src="_img/bg_menu_top_grupo.jpg" /></div>
 
 		<div id="videos">
